@@ -1,0 +1,16 @@
+.playboard
+{
+    &__singlepuzzlepiece
+    {
+        width: 20px;
+        height: 20px;
+        &--color-red
+        {
+            background-color: red;
+        }
+        &--color-green
+        {
+            background-color: green;
+        }
+    }
+}
