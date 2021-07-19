@@ -2,15 +2,20 @@
     background-color: $color;
   }
 
-  
+  $colors: red, orange, yellow, green, blue, purple;
 
-
-
+  @mixin foo($prefix, $num){
+    @for $i from 1 through $num {
+        #{$prefix}-#{$i} {
+            background-color: nth($colors, $i);
+        }
+    }
+}
 .playboard
 {
-    position: absolute;
-    width: 1200px;
-    height: 500px;
+    position: relative;
+    width: 800px;
+    height: 200px;
     background-color: hotpink;
 
     &__singlepuzzlepiece
@@ -23,8 +28,6 @@
         {
             transform: scale(1.1);
         }
-
-
         &--selected-true
         {
             z-index: 5;
@@ -46,21 +49,8 @@
             {
             }
         }
-        &--color-red
-        {
-            background-color: red;
-        }
-        &--color-green
-        {
-            background-color: green;
-        }
-        &--color-yellow
-        {
-            @include bgColor($color: yellow);
-        }
-        &--color-blue
-        {
-            @include bgColor($color: blue);
-        }
+
+        @include foo("&--color", 5);
+        
     }
 }

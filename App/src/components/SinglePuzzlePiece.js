@@ -1,8 +1,8 @@
 import React , { useState, useEffect, useCallback  } from 'react';
 
-function SinglePuzzlePiece({pieceId, color, startTop, startLeft, selected, selectedHandle}) {
+function SinglePuzzlePiece({pieceId, abovePlayboard, selected, selectedHandle}) {
 
-    const [position, setPosition] = useState({top: startTop, left: startLeft})
+    const [position, setPosition] = useState({top: Math.random() * 80, left: Math.random() * 80})
     const [grab , setGrab ] = useState(false)
 
     useEffect(() => {
@@ -11,7 +11,8 @@ function SinglePuzzlePiece({pieceId, color, startTop, startLeft, selected, selec
 
       const changePositionEvent = useCallback(e => 
           {
-            setPosition({left: e.clientX -25, top: e.clientY -25})
+            console.log(abovePlayboard);
+              setPosition({left: e.clientX -25, top: e.clientY -25})
           },[])
 
       useEffect(() => {
@@ -29,7 +30,7 @@ function SinglePuzzlePiece({pieceId, color, startTop, startLeft, selected, selec
         <div onMouseDown = {()=> setGrab(true)} onMouseUp= {()=> setGrab(false)} style={{top: position.top, left:position.left}} 
              className = {
                             `playboard__singlepuzzlepiece
-                            playboard__singlepuzzlepiece--color-${color}
+                            playboard__singlepuzzlepiece--color-${pieceId}
                             playboard__singlepuzzlepiece--grab-${grab?"grabbed":"droped"}
                             playboard__singlepuzzlepiece--selected-${(selected == pieceId)?"true":"false"}`
                           } >
