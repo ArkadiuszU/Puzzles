@@ -24,6 +24,20 @@
         @extend .grabanddropfields;
 
         background-color: yellow;
+
+        &__boxtodrop
+        {
+            background-color: rgb(196, 240, 196);
+            width: 60px;
+            height: 60px;
+            margin: 2%;
+            padding: 1%;
+
+            &-overthisbox
+            {
+                border: hotpink 2px solid;
+            }
+        }
     }
 
     &__singlepuzzlepiece
@@ -33,5 +47,14 @@
         margin: 2%;
 
         background-color: seagreen;
+
+        &-grabbed
+        {
+            opacity: 0.2;
+        }
+        &:hover
+        {
+            transform: scale(1.1);
+        }
     }
 }

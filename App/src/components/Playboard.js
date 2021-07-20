@@ -3,23 +3,38 @@ import React , { useState, useEffect, useCallback  } from 'react';
 const allPieces = ["A", "B", "C", "D"]
 
 import SinglePuzzlePiece from "./SinglePuzzlePiece";
+import PuzzleDropBox from "./PuzzleDropBox";
 
 function Playboard() {
 
-    const [piecesInGrabfield, setPiecesInGrabfield] = useState(allPieces);
-    const [piecesInDropfield, setPiecesInDropfield] = useState([]);
+    const [piecesForGrabfield, setPiecesForGrabfield] = useState(allPieces);
+    const [piecesForDropfield, setPiecesForDropfield] = useState([]);
 
-    const [overDropfield, setOverDropfield] = useState(false)
+    const [overDropBox, setOverDropBox] = useState(false)
 
-    const MovePuzzlePiece = (id)=>
+    const MovePuzzlePieceEvent = (puzzlePieceId, direction)=>
     {
-        console.log(`try move: ${id} when over is: ${overDropfield}`);
-        if(overDropfield)
+        console.log(`try move: ${puzzlePieceId} when over is: ${overDropBox} with dir ${direction}`);
+        if(direction)
         {
-            setPiecesInGrabfield(prev => { return prev.filter(v =>  v !== id)}); 
-            setPiecesInDropfield(prev => [...prev, id]);
-            setOverDropfield(false);
+         if(overDropBox)
+        {
+            setPiecesForGrabfield(prev => { return prev.filter(v =>  v !== puzzlePieceId)}); 
+            piecesForDropfield[overDropBox -1] = puzzlePieceId;
+            setOverDropBox(false);
         }
+        }
+        else
+        {
+            piecesForDropfield[piecesForDropfield.indexOf(puzzlePieceId)] = false;
+            setPiecesForGrabfield(prev => [...prev, puzzlePieceId])
+
+        }
+    }
+
+    const OverDropBoxChangeEvent = (puzzleDropBoxId)=>
+    {
+        setOverDropBox(puzzleDropBoxId);
     }
 
     return (
@@ -28,16 +43,20 @@ function Playboard() {
 
             <div className="playboard__grabfield">
                 {
-                    piecesInGrabfield.map((el, id) => {
-                        return <SinglePuzzlePiece key={id} pieceId={el} change={MovePuzzlePiece}/>
+                    piecesForGrabfield.map((el, id) => {
+                        return <SinglePuzzlePiece key={id} pieceId={el} MovePuzzlePieceHandle={MovePuzzlePieceEvent}/>
                     })
                 }
             </div>
 
-            <div className="playboard__dropfield" onDragOver={(e)=> {e.preventDefault(); if(!overDropfield)setOverDropfield(true)}} onDragLeave={() => setOverDropfield(false)}>
+            <div className="playboard__dropfield">
                 {
-                    piecesInDropfield.map((el, id) => {
-                    return <SinglePuzzlePiece key={id} pieceId={el} change={MovePuzzlePiece}/>
+                    allPieces.map((el, id) => {
+                    return( 
+                            <PuzzleDropBox key={id} boxId={id + 1} OverDropBoxChangeHandle = {OverDropBoxChangeEvent}>
+                                {(piecesForDropfield[id])?<SinglePuzzlePiece key={id} pieceId={piecesForDropfield[id]} MovePuzzlePieceHandle={MovePuzzlePieceEvent}/>:null}
+                            </PuzzleDropBox>
+                    )
                     })
                 }
             </div>

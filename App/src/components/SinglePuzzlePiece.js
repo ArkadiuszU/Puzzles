@@ -1,25 +1,25 @@
 import React , {useState, useEffect} from 'react';
 
-function SinglePuzzlePiece({pieceId, change}) {
+function SinglePuzzlePiece({pieceId, MovePuzzlePieceHandle}) {
 
-  const[drag, setDrag] = useState(false);
+  const[isGrabbed, setGrabbed] = useState(false);
 
   useEffect(()=> {
-    console.log(drag)
 
-    if(!drag)
-    change(pieceId)
+    if(!isGrabbed)
+      MovePuzzlePieceHandle(pieceId , true)
 
-  }, [drag])
+  }, [isGrabbed])
 
     return (
     <>
         <div draggable = {true} 
-              onDragStart = {()=> setDrag(true)}
-              onDragEnd = {()=> setDrag(false)}
+              onDragStart = {()=> setGrabbed(true)}
+              onDragEnd = {()=> setGrabbed(false)}
+              onDoubleClick = {() =>  MovePuzzlePieceHandle(pieceId , false)}
               className = {
                             `playboard__singlepuzzlepiece
-                            playboard__singlepuzzlepiece--drag-${drag}`
+                              ${(isGrabbed)?"playboard__singlepuzzlepiece-grabbed":null}`
                           } >
 
                             ID= {pieceId}
