@@ -1,56 +1,37 @@
-@mixin bgColor($color) {
-    background-color: $color;
-  }
-
-  $colors: red, orange, yellow, green, blue, purple;
-
-  @mixin foo($prefix, $num){
-    @for $i from 1 through $num {
-        #{$prefix}-#{$i} {
-            background-color: nth($colors, $i);
-        }
-    }
-}
 .playboard
 {
-    position: relative;
-    width: 800px;
+    width: 600px;
     height: 200px;
+    display: flex;
+
     background-color: hotpink;
+
+    .grabanddropfields{
+        display: flex;
+        width: 300px;
+        height: 200px;
+    }
+
+    &__grabfield
+    {
+        @extend .grabanddropfields;
+        
+        background-color: seashell;
+    }
+
+    &__dropfield
+    {
+        @extend .grabanddropfields;
+
+        background-color: yellow;
+    }
 
     &__singlepuzzlepiece
     {
         width: 50px;
         height: 50px;
-        position: absolute;
+        margin: 2%;
 
-        &:hover
-        {
-            transform: scale(1.1);
-        }
-        &--selected-true
-        {
-            z-index: 5;
-        }
-        &--selected-false
-        {
-            z-index: 1;
-        }
-
-        &--grab
-        {
-            &-grabbed
-            {
-                transform: scale(1.2);
-                opacity:0.5;
-            
-            }
-            &-droped
-            {
-            }
-        }
-
-        @include foo("&--color", 5);
-        
+        background-color: seagreen;
     }
 }
