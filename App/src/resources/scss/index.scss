@@ -1,25 +1,45 @@
+$base-color: #5bccf6;
+$base-yellow-color: #ffe477;
+$dark-color: #030e12;
+
 @import "reset";
 @import "grid";
 @import "playboard";
+@import "welcome";
 
-
-
-
-$base-color: #5bccf6;
-$background-color: #ffe477;
-$background-color2: #f8e7a4;
-$dark-color: #030e12;
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
 body{
 
     
     background: linear-gradient(to top right, #65dfc9, #6cbdeb);
+    font-family: 'Righteous', cursive;
 
+    h1{
+        font-size: 5rem;
+    }
+    h2{
+        font-size: 3rem;
+    }
+    p{
+        font-size: large;
+    }
+    
     .main
     {
         min-height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
+
+        .main-container 
+        {
+            min-height: 85vh;
+            width: 75%;
+            display: flex;
+            background: linear-gradient(to bottom right, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+            border-radius: 2rem ;
+        }
     }
+
 }

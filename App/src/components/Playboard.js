@@ -38,7 +38,7 @@ function Playboard() {
     }
 
     return (
-    <div className= "main" >
+        
         <div className= "playboard" >
 
             <div className="playboard__grabfield">
@@ -59,9 +59,11 @@ function Playboard() {
                     )
                     })
                 }
+
+                <img className="playboard__dropfield__icon" src="/src/resources/img/wall-clock.png" />
+                <img className="playboard__dropfield__icon" src="/src/resources/img/percentage.png" />
             </div>
         </div>
-    </div>
     );
   }
 
