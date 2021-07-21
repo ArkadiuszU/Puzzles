@@ -4,3 +4,22 @@
 
 
 
+
+$base-color: #5bccf6;
+$background-color: #ffe477;
+$background-color2: #f8e7a4;
+$dark-color: #030e12;
+
+body{
+
+    
+    background: linear-gradient(to top right, #65dfc9, #6cbdeb);
+
+    .main
+    {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

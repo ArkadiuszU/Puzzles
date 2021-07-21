@@ -1,29 +1,32 @@
 .playboard
 {
-    width: 600px;
-    height: 200px;
+    min-height: 85vh;
+    width: 75%;
     display: flex;
 
-    background-color: hotpink;
+    background: linear-gradient(to bottom right, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+    border-radius: 2rem ;
 
     .grabanddropfields{
         display: flex;
-        width: 300px;
-        height: 200px;
+        min-height: 85vh;
+        border-top-left-radius: 2rem ;
+        border-bottom-left-radius: 2rem ;
     }
 
     &__grabfield
     {
         @extend .grabanddropfields;
-        
-        background-color: seashell;
+        width: 35%;
+        background: linear-gradient(to bottom right, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
     }
 
     &__dropfield
     {
         @extend .grabanddropfields;
 
-        background-color: yellow;
+    
+        width: 65%;
 
         &__boxtodrop
         {

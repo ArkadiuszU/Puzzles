@@ -38,7 +38,7 @@ function Playboard() {
     }
 
     return (
-    <>
+    <div className= "main" >
         <div className= "playboard" >
 
             <div className="playboard__grabfield">
@@ -60,9 +60,8 @@ function Playboard() {
                     })
                 }
             </div>
-
         </div>
-    </>
+    </div>
     );
   }
 
