@@ -11,8 +11,8 @@ function Playboard() {
     const [piecesForDropfield, setPiecesForDropfield] = useState([]);
 
     const [overDropBox, setOverDropBox] = useState(false)
-
-    const MovePuzzlePieceEvent = (puzzlePieceId, direction)=>
+   
+    const MovePuzzlePieceEvent = (puzzlePieceId, direction) =>
     {
         console.log(`try move: ${puzzlePieceId} when over is: ${overDropBox} with dir ${direction}`);
         if(direction)
@@ -28,7 +28,6 @@ function Playboard() {
         {
             piecesForDropfield[piecesForDropfield.indexOf(puzzlePieceId)] = false;
             setPiecesForGrabfield(prev => [...prev, puzzlePieceId])
-
         }
     }
 
@@ -36,6 +35,8 @@ function Playboard() {
     {
         setOverDropBox(puzzleDropBoxId);
     }
+
+    useEffect(()=>{console.log("over Playboard:" + overDropBox)}, [overDropBox] )
 
     return (
         
@@ -53,7 +54,7 @@ function Playboard() {
                 {
                     allPieces.map((el, id) => {
                     return( 
-                            <PuzzleDropBox key={id} boxId={id + 1} OverDropBoxChangeHandle = {OverDropBoxChangeEvent}>
+                            <PuzzleDropBox key={id} boxId={id + 1} OverDropBoxChangeHandle = {OverDropBoxChangeEvent} overDropBoxFromPlayboard = {overDropBox}>
                                 {(piecesForDropfield[id])?<SinglePuzzlePiece key={id} pieceId={piecesForDropfield[id]} MovePuzzlePieceHandle={MovePuzzlePieceEvent}/>:null}
                             </PuzzleDropBox>
                     )

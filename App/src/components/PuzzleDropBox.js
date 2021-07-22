@@ -1,23 +1,33 @@
 import React , {useState, useEffect} from 'react';
 
-function PuzzleDropBox({boxId, OverDropBoxChangeHandle, children}) {
+function PuzzleDropBox({boxId, OverDropBoxChangeHandle, children, overDropBoxFromPlayboard}) {
 
     const [overThisDropBox, setOverThisDropBox] = useState(false)
 
-
     useEffect(()=> {
-
-        if(overThisDropBox)
-          OverDropBoxChangeHandle(boxId)
-        else
-          OverDropBoxChangeHandle(false)
-
+      console.log("overThis:" + overThisDropBox)
     }, [overThisDropBox])
+
+    const onDragOverHandle =  (e)=> 
+    {
+      if(!children) e.preventDefault();
+      if(!overDropBoxFromPlayboard)
+      {
+         setOverThisDropBox(true)
+         OverDropBoxChangeHandle(boxId)
+      }
+    }
+
+    const onDragLeaveHandle =  (e)=> 
+    {
+       setOverThisDropBox(false)
+       OverDropBoxChangeHandle(false)
+    }
 
     return (
     <>
-        <div onDragOver={(e)=> { {(!children)?e.preventDefault():null} if(!overThisDropBox)setOverThisDropBox(true)}} onDragLeave={() => setOverThisDropBox(false)}
-            className = { `playboard__dropfield__boxtodrop ${(overThisDropBox && !children )?"playboard__dropfield__boxtodrop-overthisbox":""}`} >
+        <div  onDragOver={onDragOverHandle} onDragLeave={onDragLeaveHandle}
+              className = { `playboard__dropfield__boxtodrop ${((overDropBoxFromPlayboard == boxId) && !children )?"playboard__dropfield__boxtodrop-overthisbox":""}`} >
               {children}
         </div>
     </>
