@@ -1,6 +1,6 @@
 import React , {useState, useEffect} from 'react';
 
-function SinglePuzzlePiece({pieceId, MovePuzzlePieceHandle}) {
+function SinglePuzzlePiece({pieceId, MovePuzzlePieceHandle, piecePos}) {
 
   const[isGrabbed, setGrabbed] = useState(false);
 
@@ -20,9 +20,11 @@ function SinglePuzzlePiece({pieceId, MovePuzzlePieceHandle}) {
               className = {
                             `playboard__singlepuzzlepiece
                               ${(isGrabbed)?"playboard__singlepuzzlepiece-grabbed":null}`
-                          } >
+                          } 
+              style = {{backgroundPosition: ` ${piecePos}px 0px`  }}>
 
                             ID= {pieceId}
+
         </div>
     </>
     );

@@ -1,6 +1,7 @@
 import React , { useState, useEffect, useCallback  } from 'react';
 
 const allPieces = ["A", "B", "C", "D"]
+const piecesPos = [0, -50, -100, -150]
 const result = ["D", "C", "B", "A"]
 
 import SinglePuzzlePiece from "./SinglePuzzlePiece";
@@ -75,22 +76,24 @@ function Playboard() {
             <div className="playboard__grabfield">
                 {
                     piecesForGrabfield.map((el, id) => {
-                        return <SinglePuzzlePiece key={id} pieceId={el} MovePuzzlePieceHandle={MovePuzzlePieceEvent}/>
+                        return <SinglePuzzlePiece key={id} pieceId={el} MovePuzzlePieceHandle={MovePuzzlePieceEvent} piecePos = {piecesPos[id]} />
                     })
                 }
             </div>
 
             <div className="playboard__dropfield">
                 <div className="playboard__dropfield__dropboxesarea" >
+                    <div className="playboard__dropfield__dropboxesarea__image">
                     {
                         allPieces.map((el, id) => {
                             return( 
                                     <PuzzleDropBox key={id} boxId={id + 1} OverDropBoxChangeHandle = {OverDropBoxChangeEvent} overDropBoxFromPlayboard = {overDropBox}>
-                                        {(piecesForDropfield[id])?<SinglePuzzlePiece key={id} pieceId={piecesForDropfield[id]} MovePuzzlePieceHandle={MovePuzzlePieceEvent}/>:null}
+                                        {(piecesForDropfield[id])?<SinglePuzzlePiece key={id} pieceId={piecesForDropfield[id]} MovePuzzlePieceHandle={MovePuzzlePieceEvent} piecePos = {piecesPos[id]} />:null}
                                     </PuzzleDropBox>
                             )
                         })
                     }
+                    </div>
                 </div>
                 
                 <div className="playboard__dropfield__statarea">

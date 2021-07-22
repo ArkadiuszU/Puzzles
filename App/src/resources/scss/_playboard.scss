@@ -32,19 +32,30 @@
             align-items: center;
             width: 100%;
             height: 85%;
-            &__boxtodrop
-            {
-                background-color: rgb(196, 240, 196);
-                width: 60px;
-                height: 60px;
-                margin: 2%;
-                padding: 1%;
 
-                &-overthisbox
+            &__image
+            {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-image:  linear-gradient( rgba(255,255,255,0.5), rgba(255,255,255,0.5) ),url("../img/puzzle-task-image.png");
+
+                &__boxtodrop
                 {
-                    border: hotpink 2px solid;
+                    width: 50px;
+                    height: 50px;
+                    border: black 1px solid;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    &-overthisbox
+                    {
+                        border: hotpink 2px solid;
+                    }
                 }
             }
+
         }
 
         &__statarea
@@ -68,9 +79,8 @@
         width: 50px;
         height: 50px;
         margin: 2%;
-
-        background-color: seagreen;
-
+        background-image: url("../img/puzzle-task-image.png");
+        
         &-grabbed
         {
             opacity: 0.2;

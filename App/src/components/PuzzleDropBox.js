@@ -19,9 +19,8 @@ function PuzzleDropBox({boxId, OverDropBoxChangeHandle, children, overDropBoxFro
     return (
     <>
         <div  onDragOver={onDragOverHandle} onDragLeave={onDragLeaveHandle}
-              className = { `playboard__dropfield__dropboxesarea__boxtodrop ${((overDropBoxFromPlayboard == boxId) && !children )?"playboard__dropfield__dropboxesarea__boxtodrop-overthisbox":""}`} >
+              className = { `playboard__dropfield__dropboxesarea__image__boxtodrop ${((overDropBoxFromPlayboard == boxId) && !children )?"playboard__dropfield__dropboxesarea__image__boxtodrop-overthisbox":""}`} >
               {children}
-              {boxId}
         </div>
     </>
     )
