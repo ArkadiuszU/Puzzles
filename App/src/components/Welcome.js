@@ -16,9 +16,9 @@ function Welcome() {
                 <img className="welcome__header__undraw" src="/src/resources/img/hello.svg" />
             </div>
             <div className="welcome__navbox">
-               <NavBox/>
-               <NavBox/>
-               <NavBox/>
+               <NavBox title="Play" content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" buttonText = "Let's play" navTo ="/playboard"/>
+               <NavBox title="Make puzzle" content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" buttonText = "Let's make it" navTo ="/playboard"/>
+               <NavBox title="Log in" content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" buttonText = "Let's join us" navTo ="/playboard"/>
             </div>
     </div>
     );
