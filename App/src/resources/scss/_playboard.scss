@@ -21,26 +21,46 @@
         @extend .grabanddropfields;
         
         width: 65%;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: center;
 
-        &__boxtodrop
+        &__dropboxesarea
         {
-            background-color: rgb(196, 240, 196);
-            width: 60px;
-            height: 60px;
-            margin: 2%;
-            padding: 1%;
-
-            &-overthisbox
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 85%;
+            &__boxtodrop
             {
-                border: hotpink 2px solid;
+                background-color: rgb(196, 240, 196);
+                width: 60px;
+                height: 60px;
+                margin: 2%;
+                padding: 1%;
+
+                &-overthisbox
+                {
+                    border: hotpink 2px solid;
+                }
             }
         }
-        &__icon
-        {
-            width: 40px;
-            height: 40px;
-        }
 
+        &__statarea
+        {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            height: 15%;
+            &__icon
+            {
+                width: 40px;
+                height: 40px;
+                margin-top: 20%;
+            }
+        }
     }
 
     &__singlepuzzlepiece
