@@ -95,7 +95,7 @@ function Playboard() {
                 
                 <div className="playboard__dropfield__statarea">
                       <div> <p> {gameStats.time} s</p><img className="playboard__dropfield__statarea__icon" src="/src/resources/img/wall-clock.png" /> </div>
-                      <div> <p> {gameStats.done} %</p> <img className="playboard__dropfield__statarea__icon" src="/src/resources/img/percentage.png" /> </div>
+                      <div> <p> {gameStats.done * 100/ allPieces.length} %</p> <img className="playboard__dropfield__statarea__icon" src="/src/resources/img/percentage.png" /> </div>
                 </div>
 
             </div>
