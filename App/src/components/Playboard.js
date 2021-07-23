@@ -6,32 +6,29 @@ const count = 12
 const wh = Math.round(Math.sqrt(W*H/count))
 const C = Math.round(W/wh)
 const R = Math.round(H/wh)
-
 const allPuzzlePieces = [];
 
 let step = 1;
 for (let row = 0; row < R; row++) {
 
     for (let col = 0; col < C; col++) {
-        allPuzzlePieces.push({id:step, posX: (col*wh), posY: row*wh})
+        allPuzzlePieces.push({id:step, posX: (col*wh *-1), posY: row*wh*-1})
         step++
     }
   }
 
 console.log(allPuzzlePieces)
 
-
-
-const result = ["D1", "C1", "B1", "A1"]
+const result = allPuzzlePieces.map(el=> {return el.id})
 
 import SinglePuzzlePiece from "./SinglePuzzlePiece";
 import PuzzleDropBox from "./PuzzleDropBox";
 
 function Playboard() {
 
-    const [piecesForGrabfield, setPiecesForGrabfield] = useState(allPuzzlePieces.map(el=> {return el.id}));
+    const [piecesForGrabfield, setPiecesForGrabfield] = useState(result);
     const [piecesForDropfield, setPiecesForDropfield] = useState([]);
-    const [gameStats, setGameStats] = useState({time:0, done:0});
+    const [gameStats, setGameStats] = useState({timeS:0, timeM:0, done:0});
 
 
     const [overDropBox, setOverDropBox] = useState(false)
@@ -69,13 +66,12 @@ function Playboard() {
                 points ++
         });
 
-        setGameStats(prev => {return {...prev, done: (points * 100/ result.length)}})
+        setGameStats(prev => {return {...prev, done: (Math.round(points * 100/ result.length))}})
     }
-
 
     useEffect(() => {
 
-        //const gameTimeInterval = setInterval( ()=> { setGameStats(prev => { return {...prev, time: prev.time+1}}) } , 1000);
+        const gameTimeInterval = setInterval( ()=> { setGameStats(prev => { return {...prev, timeS: prev.timeS+1}}) } , 1000);
 
         return () => 
         {
@@ -85,12 +81,9 @@ function Playboard() {
      }, [])
 
      useEffect(() => {
-
-        //console.log(piecesForGrabfield);
-        //console.log(piecesForDropfield);
-        //console.log(piecesForDropfield.length)
-
-     }, [piecesForGrabfield])
+        if(gameStats.timeS>=60)
+            setGameStats(prev => {return {...prev, timeS: 0, timeM: prev.timeM+1}})
+     }, [gameStats.timeS])
 
     return (
         
@@ -122,9 +115,9 @@ function Playboard() {
                     }
                     </div>
                 </div>
-                
+
                 <div className="playboard__dropfield__statarea">
-                      <div> <p> {gameStats.time} s</p><img className="playboard__dropfield__statarea__icon" src="/src/resources/img/wall-clock.png" /> </div>
+                      <div> <p> {gameStats.timeM}m{gameStats.timeS}s</p><img className="playboard__dropfield__statarea__icon" src="/src/resources/img/wall-clock.png" /> </div>
                       <div> <p> {gameStats.done} %</p> <img className="playboard__dropfield__statarea__icon" src="/src/resources/img/percentage.png" /> </div>
                 </div>
 
