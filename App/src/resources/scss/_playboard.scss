@@ -14,6 +14,17 @@
         @extend .grabanddropfields;
         width: 35%;
         background: linear-gradient(to bottom right, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+        display: flex;
+        justify-content: center;
+
+        &__grabbox
+        {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 80%;
+            height: 1%;
+        }
     }
 
     &__dropfield
@@ -36,18 +47,18 @@
             &__image
             {
                 display: flex;
-                justify-content: center;
-                align-items: center;
-                background-image:  linear-gradient( rgba(255,255,255,0.5), rgba(255,255,255,0.5) ),url("../img/puzzle-task-image.png");
+                flex-wrap: wrap;
+
+                background-image:  linear-gradient( rgba(255,255,255,0.6), rgba(255,255,255,0.6) ),url("../img/puzzle-task-image.png");
+                //background-color: aquamarine;
 
                 &__boxtodrop
                 {
-                    width: 50px;
-                    height: 50px;
                     border: black 1px solid;
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                   
 
                     &-overthisbox
                     {
@@ -76,9 +87,6 @@
 
     &__singlepuzzlepiece
     {
-        width: 50px;
-        height: 50px;
-        margin: 2%;
         background-image: url("../img/puzzle-task-image.png");
         
         &-grabbed

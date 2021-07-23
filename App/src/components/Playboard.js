@@ -1,12 +1,25 @@
 import React , { useState, useEffect, useCallback  } from 'react';
 
+const W = 600;
+const H = 450;
+const count = 12
+const wh = Math.round(Math.sqrt(W*H/count))
+const C = Math.round(W/wh)
+const R = Math.round(H/wh)
 
-const allPuzzlePieces = [
-                            {id:"A1", pos: -150},
-                            {id:"B1", pos: -100},
-                            {id:"C1", pos: -50},
-                            {id:"D1", pos:  0}
-                        ]
+const allPuzzlePieces = [];
+
+let step = 1;
+for (let row = 0; row < R; row++) {
+
+    for (let col = 0; col < C; col++) {
+        allPuzzlePieces.push({id:step, posX: (col*wh), posY: row*wh})
+        step++
+    }
+  }
+
+console.log(allPuzzlePieces)
+
 
 
 const result = ["D1", "C1", "B1", "A1"]
@@ -64,7 +77,6 @@ function Playboard() {
 
         //const gameTimeInterval = setInterval( ()=> { setGameStats(prev => { return {...prev, time: prev.time+1}}) } , 1000);
 
-
         return () => 
         {
             clearInterval(gameTimeInterval);
@@ -85,23 +97,25 @@ function Playboard() {
         <div className= "playboard" >
 
             <div className="playboard__grabfield">
+                <div className="playboard__grabfield__grabbox">
                 {
                     piecesForGrabfield.map((el, id) => {
                         const puzzlePieces = allPuzzlePieces.filter(v =>  v.id == el)[0]; 
-                        return <SinglePuzzlePiece key={id} pieceId={puzzlePieces.id} MovePuzzlePieceHandle={MovePuzzlePieceEvent} piecePos = {puzzlePieces.pos} />
+                        return <SinglePuzzlePiece key={id} pieceId={puzzlePieces.id} MovePuzzlePieceHandle={MovePuzzlePieceEvent} piecePos = {{x:puzzlePieces.posX, y:puzzlePieces.posY}} size={wh} />
                     })
                 }
+                    </div>
             </div>
 
             <div className="playboard__dropfield">
                 <div className="playboard__dropfield__dropboxesarea" >
-                    <div className="playboard__dropfield__dropboxesarea__image">
+                    <div className="playboard__dropfield__dropboxesarea__image" style={{width:`${W}px`, height:`${H}px`}}>
                     {
                         allPuzzlePieces.map((el, id) => {
                             const puzzlePieces = allPuzzlePieces.filter(v =>  v.id == piecesForDropfield[id])[0]; 
                             return( 
-                                    <PuzzleDropBox key={id} boxId={id + 1} OverDropBoxChangeHandle = {OverDropBoxChangeEvent} overDropBoxFromPlayboard = {overDropBox}>
-                                        {(puzzlePieces)?<SinglePuzzlePiece key={id} pieceId={puzzlePieces.id} MovePuzzlePieceHandle={MovePuzzlePieceEvent} piecePos = {puzzlePieces.pos} />:null}
+                                    <PuzzleDropBox key={id} boxId={id + 1} OverDropBoxChangeHandle = {OverDropBoxChangeEvent} overDropBoxFromPlayboard = {overDropBox} size={wh} >
+                                        {(puzzlePieces)?<SinglePuzzlePiece key={id} pieceId={puzzlePieces.id} MovePuzzlePieceHandle={MovePuzzlePieceEvent} piecePos = {{x:puzzlePieces.posX, y:puzzlePieces.posY}} size={wh} />:null}
                                     </PuzzleDropBox>
                             )
                         })
