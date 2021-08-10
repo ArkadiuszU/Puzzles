@@ -38,12 +38,17 @@ function Playboard() {
         //console.log(`try move: ${puzzlePieceId} when over is: ${overDropBox} with dir ${direction}`);
         if(direction)
         {
-        if(overDropBox)
-        {
-            setPiecesForGrabfield(prev => { return prev.filter(v =>  v !== puzzlePieceId)}); 
-            piecesForDropfield[overDropBox -1] = puzzlePieceId;
-            setOverDropBox(false);
-        }
+            if(overDropBox)
+            {
+                setPiecesForGrabfield(prev => { return prev.filter(v =>  v !== puzzlePieceId)});
+
+                const index = piecesForDropfield.indexOf(puzzlePieceId);
+                if (index > -1) 
+                    piecesForDropfield.splice(index, 1);
+            
+                piecesForDropfield[overDropBox -1] = puzzlePieceId;
+                setOverDropBox(false);
+            }
         }
         else
         {
@@ -94,7 +99,7 @@ function Playboard() {
                 {
                     piecesForGrabfield.map((el, id) => {
                         const puzzlePieces = allPuzzlePieces.filter(v =>  v.id == el)[0]; 
-                        return <SinglePuzzlePiece key={id} pieceId={puzzlePieces.id} MovePuzzlePieceHandle={MovePuzzlePieceEvent} piecePos = {{x:puzzlePieces.posX, y:puzzlePieces.posY}} size={wh} />
+                        return <SinglePuzzlePiece key={id} pieceId={puzzlePieces.id} MovePuzzlePieceHandle={MovePuzzlePieceEvent} piecePos = {{x:puzzlePieces.posX, y:puzzlePieces.posY}} size={wh} onGrabfield = {true} />
                     })
                 }
                     </div>
@@ -108,7 +113,7 @@ function Playboard() {
                             const puzzlePieces = allPuzzlePieces.filter(v =>  v.id == piecesForDropfield[id])[0]; 
                             return( 
                                     <PuzzleDropBox key={id} boxId={id + 1} OverDropBoxChangeHandle = {OverDropBoxChangeEvent} overDropBoxFromPlayboard = {overDropBox} size={wh} >
-                                        {(puzzlePieces)?<SinglePuzzlePiece key={id} pieceId={puzzlePieces.id} MovePuzzlePieceHandle={MovePuzzlePieceEvent} piecePos = {{x:puzzlePieces.posX, y:puzzlePieces.posY}} size={wh} />:null}
+                                        {(puzzlePieces)?<SinglePuzzlePiece key={id} pieceId={puzzlePieces.id} MovePuzzlePieceHandle={MovePuzzlePieceEvent} piecePos = {{x:puzzlePieces.posX, y:puzzlePieces.posY}} size={wh} onGrabfield = {false}  />:null}
                                     </PuzzleDropBox>
                             )
                         })
@@ -117,7 +122,7 @@ function Playboard() {
                 </div>
 
                 <div className="playboard__dropfield__statarea">
-                      <div> <p> {gameStats.timeM}m{gameStats.timeS}s</p><img className="playboard__dropfield__statarea__icon" src="/src/resources/img/wall-clock.png" /> </div>
+                      <div> <p> {gameStats.timeM>0?`${gameStats.timeM}m`:""}{gameStats.timeS}s</p><img className="playboard__dropfield__statarea__icon" src="/src/resources/img/wall-clock.png" /> </div>
                       <div> <p> {gameStats.done} %</p> <img className="playboard__dropfield__statarea__icon" src="/src/resources/img/percentage.png" /> </div>
                 </div>
 
