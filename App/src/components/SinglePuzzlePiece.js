@@ -16,7 +16,7 @@ function SinglePuzzlePiece({pieceId, MovePuzzlePieceHandle, piecePos, size, onGr
         <div draggable = {true} 
               onDragStart = {()=> setGrabbed(true)}
               onDragEnd = {()=> setGrabbed(false)}
-              onDoubleClick = {() =>  MovePuzzlePieceHandle(pieceId , false)}
+              onDoubleClick = {() => (!onGrabfield)?MovePuzzlePieceHandle(pieceId , false):null}
               className = {
                             `playboard__singlepuzzlepiece
                               ${(isGrabbed)?"playboard__singlepuzzlepiece-grabbed":null}`

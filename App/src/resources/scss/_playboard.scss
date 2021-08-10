@@ -16,17 +16,14 @@
         background: linear-gradient(to bottom right, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
         display: flex;
         justify-content: center;
-        align-items: top;
-        background-color: blueviolet;
-
         &__grabbox
         {
             display: flex;
             flex-wrap: wrap;
             width: 80%;
             height: 1%;
-            background-color: blue;
-            justify-content: center
+            justify-content: center;
+            margin-top: 5%;
 
         }
     }
@@ -92,6 +89,7 @@
     &__singlepuzzlepiece
     {
         background-image: url("../img/puzzle-task-image.png");
+        transition: all .2s ease-in-out;
         &-grabbed
         {
             opacity: 0.2;

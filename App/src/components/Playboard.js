@@ -42,10 +42,7 @@ function Playboard() {
             {
                 setPiecesForGrabfield(prev => { return prev.filter(v =>  v !== puzzlePieceId)});
 
-                const index = piecesForDropfield.indexOf(puzzlePieceId);
-                if (index > -1) 
-                    piecesForDropfield.splice(index, 1);
-            
+                piecesForDropfield[piecesForDropfield.indexOf(puzzlePieceId)] = false;
                 piecesForDropfield[overDropBox -1] = puzzlePieceId;
                 setOverDropBox(false);
             }
@@ -55,6 +52,7 @@ function Playboard() {
             piecesForDropfield[piecesForDropfield.indexOf(puzzlePieceId)] = false;
             setPiecesForGrabfield(prev => [...prev, puzzlePieceId])
         }
+        
 
         CheckPoints();
     }
