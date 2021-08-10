@@ -16,14 +16,19 @@
         background: linear-gradient(to bottom right, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
         display: flex;
         justify-content: center;
+        align-items: center;
+        max-height: 200px;
         &__grabbox
         {
             display: flex;
             flex-wrap: wrap;
-            width: 80%;
-            height: 1%;
+            width: 100%;
+            height: 80%;
             justify-content: center;
-            margin-top: 5%;
+            overflow-y: scroll;
+            &::-webkit-scrollbar {
+                display: none;
+              }
 
         }
     }
@@ -32,7 +37,7 @@
     {
         @extend .grabanddropfields;
         
-        width: 65%;
+        width: 100%;
         flex-direction: column;
         justify-content: space-between;
         text-align: center;
@@ -49,17 +54,20 @@
             {
                 display: flex;
                 flex-wrap: wrap;
-
                 background-image:  linear-gradient( rgba(255,255,255,0.6), rgba(255,255,255,0.6) ),url("../img/puzzle-task-image.png");
-                //background-color: aquamarine;
 
+                &-exposed
+                {
+                    transform: scale(1.4);
+                    background-image:  url("../img/puzzle-task-image.png");
+                }
+              
                 &__boxtodrop
                 {
                     border: black 1px solid;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                   
 
                     &-overthisbox
                     {
@@ -89,14 +97,19 @@
     &__singlepuzzlepiece
     {
         background-image: url("../img/puzzle-task-image.png");
-        transition: all .2s ease-in-out;
+        transition: all .3s ease-in-out;
+        transform: scale(0.8);
         &-grabbed
         {
             opacity: 0.2;
         }
+        &-dropped
+        {
+            transform: scale(1);
+        }
         &:hover
         {
-            transform: scale(1.1);
+            transform: scale(1);
         }
     }
 }

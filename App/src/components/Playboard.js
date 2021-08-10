@@ -7,6 +7,7 @@ const wh = Math.round(Math.sqrt(W*H/count))
 const C = Math.round(W/wh)
 const R = Math.round(H/wh)
 const allPuzzlePieces = [];
+let gameTimeInterval;
 
 let step = 1;
 for (let row = 0; row < R; row++) {
@@ -26,12 +27,13 @@ import PuzzleDropBox from "./PuzzleDropBox";
 
 function Playboard() {
 
+
+    const [allPieces, setAllPieces] = useState(allPuzzlePieces);
     const [piecesForGrabfield, setPiecesForGrabfield] = useState(result);
     const [piecesForDropfield, setPiecesForDropfield] = useState([]);
     const [gameStats, setGameStats] = useState({timeS:0, timeM:0, done:0});
-
-
     const [overDropBox, setOverDropBox] = useState(false)
+    const [endGame, setEndGame] = useState(false)
 
     const MovePuzzlePieceEvent = (puzzlePieceId, direction) =>
     {
@@ -41,7 +43,6 @@ function Playboard() {
             if(overDropBox)
             {
                 setPiecesForGrabfield(prev => { return prev.filter(v =>  v !== puzzlePieceId)});
-
                 piecesForDropfield[piecesForDropfield.indexOf(puzzlePieceId)] = false;
                 piecesForDropfield[overDropBox -1] = puzzlePieceId;
                 setOverDropBox(false);
@@ -52,8 +53,6 @@ function Playboard() {
             piecesForDropfield[piecesForDropfield.indexOf(puzzlePieceId)] = false;
             setPiecesForGrabfield(prev => [...prev, puzzlePieceId])
         }
-        
-
         CheckPoints();
     }
     const OverDropBoxChangeEvent = (puzzleDropBoxId)=>
@@ -70,11 +69,20 @@ function Playboard() {
         });
 
         setGameStats(prev => {return {...prev, done: (Math.round(points * 100/ result.length))}})
+
+        if(points * 100/ result.length == 100)
+        {
+            console.log("zwycięstwo")
+            clearInterval(gameTimeInterval);
+            setPiecesForDropfield([])
+            setEndGame(true)
+            setAllPieces([]);
+        }
     }
 
     useEffect(() => {
 
-        const gameTimeInterval = setInterval( ()=> { setGameStats(prev => { return {...prev, timeS: prev.timeS+1}}) } , 1000);
+        gameTimeInterval = setInterval( ()=> { setGameStats(prev => { return {...prev, timeS: prev.timeS+1}}) } , 1000);
 
         return () => 
         {
@@ -92,6 +100,7 @@ function Playboard() {
         
         <div className= "playboard" >
 
+        {!endGame?
             <div className="playboard__grabfield">
                 <div className="playboard__grabfield__grabbox">
                 {
@@ -100,15 +109,17 @@ function Playboard() {
                         return <SinglePuzzlePiece key={id} pieceId={puzzlePieces.id} MovePuzzlePieceHandle={MovePuzzlePieceEvent} piecePos = {{x:puzzlePieces.posX, y:puzzlePieces.posY}} size={wh} onGrabfield = {true} />
                     })
                 }
-                    </div>
+                </div>
             </div>
+            :null
+        }
 
             <div className="playboard__dropfield">
                 <div className="playboard__dropfield__dropboxesarea" >
-                    <div className="playboard__dropfield__dropboxesarea__image" style={{width:`${W}px`, height:`${H}px`}}>
+                    <div className= {`playboard__dropfield__dropboxesarea__image ${endGame?"playboard__dropfield__dropboxesarea__image-exposed":""}`} style={{width:`${W}px`, height:`${H}px`}}>
                     {
-                        allPuzzlePieces.map((el, id) => {
-                            const puzzlePieces = allPuzzlePieces.filter(v =>  v.id == piecesForDropfield[id])[0]; 
+                        allPieces.map((el, id) => {
+                            const puzzlePieces = allPieces.filter(v =>  v.id == piecesForDropfield[id])[0]; 
                             return( 
                                     <PuzzleDropBox key={id} boxId={id + 1} OverDropBoxChangeHandle = {OverDropBoxChangeEvent} overDropBoxFromPlayboard = {overDropBox} size={wh} >
                                         {(puzzlePieces)?<SinglePuzzlePiece key={id} pieceId={puzzlePieces.id} MovePuzzlePieceHandle={MovePuzzlePieceEvent} piecePos = {{x:puzzlePieces.posX, y:puzzlePieces.posY}} size={wh} onGrabfield = {false}  />:null}
@@ -119,10 +130,17 @@ function Playboard() {
                     </div>
                 </div>
 
+                {!endGame?
                 <div className="playboard__dropfield__statarea">
                       <div> <p> {gameStats.timeM>0?`${gameStats.timeM}m`:""}{gameStats.timeS}s</p><img className="playboard__dropfield__statarea__icon" src="/src/resources/img/wall-clock.png" /> </div>
                       <div> <p> {gameStats.done} %</p> <img className="playboard__dropfield__statarea__icon" src="/src/resources/img/percentage.png" /> </div>
                 </div>
+                :
+                <div className="playboard__dropfield__statarea">
+                    <h4>"Zwycięstwo !!!"</h4>
+                    <p> {gameStats.timeM>0?`${gameStats.timeM}m`:""}{gameStats.timeS}s</p>
+                </div>
+                }
 
             </div>
         </div>

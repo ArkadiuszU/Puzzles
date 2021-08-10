@@ -19,7 +19,8 @@ function SinglePuzzlePiece({pieceId, MovePuzzlePieceHandle, piecePos, size, onGr
               onDoubleClick = {() => (!onGrabfield)?MovePuzzlePieceHandle(pieceId , false):null}
               className = {
                             `playboard__singlepuzzlepiece
-                              ${(isGrabbed)?"playboard__singlepuzzlepiece-grabbed":null}`
+                              ${(isGrabbed)?"playboard__singlepuzzlepiece-grabbed":null}
+                              ${(!onGrabfield)?"playboard__singlepuzzlepiece-dropped":null}`
                           } 
               style = {{backgroundPosition: ` ${piecePos.x}px ${piecePos.y}px` , width : `${size}px`, height : `${size}px` , margin : `${onGrabfield?"1%":"0%"}`}}>
 
