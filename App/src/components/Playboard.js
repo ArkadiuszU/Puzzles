@@ -1,4 +1,5 @@
 import React , { useState, useEffect, useCallback  } from 'react';
+import { useParams} from 'react-router-dom';
 
 const W = 600;
 const H = 450;
@@ -8,6 +9,7 @@ const C = Math.round(W/wh)
 const R = Math.round(H/wh)
 const allPuzzlePieces = [];
 let gameTimeInterval;
+const c = ["red", "blue"]; 
 
 let step = 1;
 for (let row = 0; row < R; row++) {
@@ -34,6 +36,8 @@ function Playboard() {
     const [gameStats, setGameStats] = useState({timeS:0, timeM:0, done:0});
     const [overDropBox, setOverDropBox] = useState(false)
     const [endGame, setEndGame] = useState(false)
+
+    let { id } = useParams();
 
     const MovePuzzlePieceEvent = (puzzlePieceId, direction) =>
     {
@@ -98,7 +102,7 @@ function Playboard() {
 
     return (
         
-        <div className= "playboard" >
+        <div className= "playboard" style= {{"--image": c[id-1]}} >
 
         {!endGame?
             <div className="playboard__grabfield">
