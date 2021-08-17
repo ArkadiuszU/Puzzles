@@ -1,56 +1,44 @@
+const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const path = require("path");
-const entryPath = "App";
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  mode: 'development',
-  entry: `./${entryPath}/src/index.js`,
-  output: {
-    filename: "out.js",
-    path: path.resolve(__dirname, `${entryPath}/build`)
+  entry: {
+    main: path.resolve(__dirname, './App/src/index.js'),
   },
-  devServer: {
-    contentBase: path.join(__dirname, `${entryPath}`),
-    publicPath: "/build/",
-    compress: true,
-    port: 3001,
-    historyApiFallback: true,
-    open: true
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "babel-loader"
-      },
-      {
-        test: /\.s[ac]ss$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader',],
-      },
-      {
-        test: /\.svg$/,
-        use: ['@svgr/webpack'],
-      },
-      {
-        test: /\.(png|jp(e*)g|svg|gif)$/,
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                name: 'images/[hash]-[name].[ext]',
-              },
-            },
-          ],
-        }
-    ]
-  },
-  plugins:[
-    new MiniCssExtractPlugin(),
-    new HtmlWebpackPlugin({
-      template: './App/index.html',
-      favicon: './App/Favicon.ico'
-    })
-  ]
-}; 
+  // Where files should be sent once they are bundled
+ output: {
+   path: path.join(__dirname, '/dist'),
+   filename: 'index.js',
+   assetModuleFilename: 'images/[hash]-[name].[ext]'
+ },
+  // webpack 5 comes with devServer which loads in development mode
+ devServer: {
+   port: 3000,
+   watchContentBase: true
+ },
+  // Rules of how webpack will take our files, complie & bundle them for the browser 
+ module: {
+   rules: [
+     // JavaScript
+     {
+       test: /\.(js|jsx)$/,
+       exclude: /nodeModules/,
+       use: {
+         loader: 'babel-loader'
+       }
+     },
+     // CSS and SCSS
+     {
+      test: /\.s[ac]ss$/i,
+      use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader',],
+    },
+     // Images
+     {
+      test: /\.(?:ico|gif|png|svg|jpg|jpeg)$/i,
+      type: 'asset/resource',
+    },
+   ]
+ },
+ plugins: [new HtmlWebpackPlugin({ template: './App/index.html',  favicon: './App/Favicon.ico' }), new MiniCssExtractPlugin()],
+}

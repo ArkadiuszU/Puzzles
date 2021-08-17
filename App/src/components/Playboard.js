@@ -101,9 +101,7 @@ function Playboard() {
      }, [gameStats.timeS])
 
     return (
-        
-        <div className= "playboard" style= {{"--image": c[id-1]}} >
-
+        <div className= "playboard"  >
         {!endGame?
             <div className="playboard__grabfield">
                 <div className="playboard__grabfield__grabbox">

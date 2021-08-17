@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Switch,} from 'react-router-dom';
 import ImagesList from './components/ImagesList';
 import Playboard from "./components/Playboard";
 import Welcome from "./components/Welcome";
-
+import test from "./resources/img/hello.svg";
 
 
 import './resources/scss/index.scss';
