@@ -1,8 +1,6 @@
 import React , {useState, useEffect} from 'react';
 
-import test from "../resources/img/puzzle-task-image.png";
-
-function SinglePuzzlePiece({pieceId, MovePuzzlePieceHandle, piecePos, size, onGrabfield}) {
+function SinglePuzzlePiece({pieceId, MovePuzzlePieceHandle, piecePos, size, onGrabfield, image}) {
 
   const[isGrabbed, setGrabbed] = useState(false);
 
@@ -24,7 +22,7 @@ function SinglePuzzlePiece({pieceId, MovePuzzlePieceHandle, piecePos, size, onGr
                               ${(isGrabbed)?"playboard__singlepuzzlepiece-grabbed":null}
                               ${(!onGrabfield)?"playboard__singlepuzzlepiece-dropped":null}`
                           } 
-              style = {{backgroundPosition: ` ${piecePos.x}px ${piecePos.y}px` , width : `${size}px`, height : `${size}px` , margin : `${onGrabfield?"1%":"0%"}`,  backgroundImage :  `url(${test})`}}>
+              style = {{backgroundPosition: ` ${piecePos.x}px ${piecePos.y}px` , width : `${size}px`, height : `${size}px` , margin : `${onGrabfield?"1%":"0%"}`}}>
 
                             ID= {pieceId}
 

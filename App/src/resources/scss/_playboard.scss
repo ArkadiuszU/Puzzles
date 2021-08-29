@@ -54,12 +54,12 @@
             {
                 display: flex;
                 flex-wrap: wrap;
-                background-image:  linear-gradient( rgba(255,255,255,0.6), rgba(255,255,255,0.6) ),url("../img/puzzle-task-image.png");
+                background-image:  linear-gradient( rgba(255,255,255,0.6), rgba(255,255,255,0.6) ),var(--image);
 
                 &-exposed
                 {
                     transform: scale(1.4);
-                    background-image:  url("../img/puzzle-task-image.png");
+                    background-image:  var(--image);
                 }
               
                 &__boxtodrop
@@ -72,7 +72,7 @@
                     &-overthisbox
                     {
                         border: hotpink 2px solid;
-                        border: var(--image) 2px solid;
+                        border: var(--color) 2px solid;
                     }
                 }
             }
@@ -97,7 +97,7 @@
 
     &__singlepuzzlepiece
     {
-        background-image: url("../img/puzzle-task-image.png");
+        background-image: var(--image);
         transition: all .3s ease-in-out;
         transform: scale(0.8);
         &-grabbed
