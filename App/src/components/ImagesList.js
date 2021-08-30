@@ -11,27 +11,39 @@ import image5 from "../resources/img/puzzle-task-image-5.jpg"
 import image6 from "../resources/img/puzzle-task-image-6.jpg"
 import image7 from "../resources/img/puzzle-task-image-7.jpg"
 import image8 from "../resources/img/puzzle-task-image-8.jpg"
+import imageFollowing from "../resources/img/following.svg"
 
-const images =  [image1, image2, image3, image4, image5, image6, image7, image8]
+const images =  [image1, image2, image3, image4, image5, image6, image7, image8,
+  image1, image2, image3, image4, image5, image6, image7, image8,image1, image2, image3, image4, image5, image6, image7, image8]
 
 
 function ImagesList() {
 
     return (
-      <>
-            {
+      <div className= "imageslist">
+
+       <img className= "imageslist__background" src={imageFollowing} />
+       <div className= "imageslist__container">
+       {
               images.map((el, id)=>
               {
                 return (
-                  <div>
-                                      <Link  className= "welcome__navbox__box__button" to= {`/playboard/${id+1}`}> playboard</Link>
-                  <img src = {el}/>
+                  <div className= "imageslist__container__element" >
+                                      {/* <Link  className= "welcome__navbox__box__button" to= {`/playboard/${id+1}`}> playboard</Link>
+                  <img src = {el}/> */}
+
+                  mkerswijvpewr
+
                   </div>
                 )
               })
+
+              
+
             }
-            
-      </>
+       </div>
+  
+      </div>
     );
   }
 

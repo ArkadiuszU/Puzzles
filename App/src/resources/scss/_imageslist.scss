@@ -1,0 +1,31 @@
+.imageslist
+{
+    @extend .main-container;
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__background
+    {
+        width: 100%;
+        position: absolute;
+    }
+
+    &__container
+    {
+        background-color: chartreuse;
+        width: 50%;
+        height: 50%;
+        position: absolute;
+        top:20;
+        z-index: 2;
+        overflow: auto;
+
+        &__element
+        {
+            background-color: crimson;
+            margin: 2%;
+        }
+    }
+}
