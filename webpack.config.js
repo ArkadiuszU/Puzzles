@@ -10,13 +10,15 @@ module.exports = {
  output: {
    path: path.join(__dirname, '/dist'),
    filename: 'index.js',
-   assetModuleFilename: 'images/[hash]-[name].[ext]'
+   assetModuleFilename: 'images/[hash]-[name].[ext]',
+   publicPath: '/'
  },
   // webpack 5 comes with devServer which loads in development mode
  devServer: {
    port: 3000,
    watchContentBase: true,
-   open: true
+   open: true,
+   historyApiFallback: true
  },
   // Rules of how webpack will take our files, complie & bundle them for the browser 
  module: {
