@@ -1,31 +1,53 @@
 .imageslist
 {
     @extend .main-container;
-
-    position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: start;
+    padding-top: 4%;
     align-items: center;
-    &__background
-    {
-        width: 100%;
-        position: absolute;
-    }
+    flex-direction: column;
+    background-image: url("../img/following.svg");
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
 
     &__container
     {
-        background-color: chartreuse;
-        width: 50%;
-        height: 50%;
-        position: absolute;
-        top:20;
-        z-index: 2;
+        margin-top: 4%;
+        width: 60%;
+        height: 25vw;
+        margin-left: 50px;
         overflow: auto;
 
         &__element
         {
-            background-color: crimson;
+            background-color: $base-color;
+            background-image: linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0.1), rgba(255,255,255,0.9));
+            background-size: 300%;
+            background-position: right;
+            transition: background-position 1.2s;
+            display: flex;
+            justify-content: space-around;
             margin: 2%;
+            padding: 2%;
+            height: 30%;
+
+            &:hover{
+                background-position: left;
+            }
+            
+            img{
+                width: 20%;
+                height: 100%;
+                transition: all .4s ease-in-out;
+                &:hover
+                {
+                    cursor: zoom-in;
+                    transform: scale(1.7); /* Equal to scaleX(0.7) scaleY(0.7) */
+                    box-shadow: 0 0 1em $base-yellow-color;
+                    
+                }
+            }
         }
     }
 }

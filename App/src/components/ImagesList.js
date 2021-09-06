@@ -21,19 +21,16 @@ function ImagesList() {
 
     return (
       <div className= "imageslist">
-
-       <img className= "imageslist__background" src={imageFollowing} />
+      <h2>select yours puzzle to play</h2>
+       
        <div className= "imageslist__container">
        {
               images.map((el, id)=>
               {
                 return (
                   <div className= "imageslist__container__element" >
-                                      {/* <Link  className= "welcome__navbox__box__button" to= {`/playboard/${id+1}`}> playboard</Link>
-                  <img src = {el}/> */}
-
-                  mkerswijvpewr
-
+                 <Link  className= "mageslist__container__element__button" to= {`/playboard/${id+1}`}> playboard</Link>
+                  <img src = {el}/>
                   </div>
                 )
               })
