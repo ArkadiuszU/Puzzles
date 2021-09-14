@@ -8,7 +8,7 @@ function ImagesList() {
   useEffect(()=>{
     console.log("nohej");
 
-    fetch('https://localhost:5001/api/puzzletask')
+    fetch('https://puzzlesapi.azurewebsites.net/api/PuzzleTask')
   .then(response => response.json())
   .then(data => { console.log(data); setPuzzleTasks(data)});
 

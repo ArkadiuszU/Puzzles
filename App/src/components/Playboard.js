@@ -46,7 +46,7 @@ function Playboard() {
   useEffect(()=>{
     console.log("nohej");
 
-    fetch(`https://localhost:5001/api/puzzletask/${id}`)
+    fetch(`https://puzzlesapi.azurewebsites.net/api/PuzzleTask/${id}`)
   .then(response => response.json())
   .then(data => { console.log(data); setPuzzleTask(data); SetContentLoaded(true)});
 
