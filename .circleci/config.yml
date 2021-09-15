@@ -21,6 +21,9 @@ jobs:
       - run:
           name: Run Tests
           command: npm run test
+      - run:
+          name: build to deploy
+          command: npm run build
           
 orbs:
   heroku: circleci/heroku@1.2
