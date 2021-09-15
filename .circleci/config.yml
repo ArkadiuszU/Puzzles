@@ -33,7 +33,6 @@ workflows:
   orb-free-workflow:
     jobs:
       - test
-      - deploy
-        requires:
-          - test
-      
+      - deploy:
+          requires:
+            - test
