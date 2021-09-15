@@ -1,0 +1,69 @@
+@keyframes animation_1 {
+    from{
+        transform: translate(0, 0);
+    }
+    to
+    {
+        transform: translate(-10%, -10%);
+    }
+}
+
+@keyframes animation_3 {
+    from{
+        transform: translate(0, 0);
+    }
+    to
+    {
+        transform: translate(10%, 10%);
+    }
+}
+
+@keyframes animation_3 {
+    from{
+        transform: translate(0, 0);
+    }
+    to
+    {
+        transform: translate(-10%, -10%);
+    }
+}
+
+@keyframes animation_4 {
+    from{
+        transform: translate(0, 0);
+    }
+    to
+    {
+        transform: translate(-10%, -10%);
+    }
+}
+
+.loading
+{
+    svg
+    {
+        #vector_1
+        {
+            animation: animation_1 1s ease forwards;
+            position: relative;
+        }
+
+        #vector_2
+        {
+            animation: animation_2 1s 1s ease forwards;
+            position: relative;
+        }
+
+        // #vector_3
+        // {
+        //     animation: animation_1 2s 1s ease forwards;
+        //     position: relative;
+        // }
+
+        // #vector_4
+        // {
+        //     animation: animation_1 3s 1s ease forwards;
+        //     position: relative;
+        // }
+    }
+}
