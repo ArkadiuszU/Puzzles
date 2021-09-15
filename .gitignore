@@ -7,7 +7,7 @@ package-lock.json
 node_modules/
 .sass-cache/
 build/
-
+dist/
 ### OSX ###
 .DS_Store
 .AppleDouble
