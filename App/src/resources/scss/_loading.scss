@@ -82,6 +82,7 @@ $rotate_time : 4*$move_time;
                 @include move_animation(move_#{$i})
             }
         }
+
         // #vector_1
         // {
         //     @include move_animation(move_1)
