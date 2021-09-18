@@ -22,9 +22,20 @@
                 display: none;
               }
 
+              a{
+                text-decoration: none;
+                color:black;
+            }
+
+    &__loading
+              {
+                  height: 100%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+              }
         &__element
         {
-            background-color: $base-color;
             background-image: linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0.1), rgba(255,255,255,0.9));
             background-size: 300%;
             background-position: right;
@@ -37,18 +48,20 @@
 
             &:hover{
                 background-position: left;
+                cursor: pointer;
             }
-            
-            img{
+
+            &__img{
                 width: 20%;
                 height: 100%;
-                transition: all .4s ease-in-out;
-                &:hover
+                transition: all .2s  ease-in-out;
+
+                &--hovered
                 {
-                    cursor: zoom-in;
+                    @extend .imageslist__container__element__img;
                     transform: scale(1.7); /* Equal to scaleX(0.7) scaleY(0.7) */
                     box-shadow: 0 0 1em $base-yellow-color;
-                    
+                    transition: all .2s 0.5s ease-in-out;
                 }
             }
         }

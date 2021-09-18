@@ -1,5 +1,6 @@
 import React , { useState, useEffect, useCallback  } from 'react';
 import { useParams} from 'react-router-dom';
+import Loading from './Loading';
 
 const W = 600;
 const H = 450;
@@ -44,11 +45,18 @@ function Playboard() {
 
 
   useEffect(()=>{
-    console.log("nohej");
+
+
+
+  setTimeout(_ => {
 
     fetch(`https://puzzlesapi.azurewebsites.net/api/PuzzleTask/${id}`)
-  .then(response => response.json())
-  .then(data => { console.log(data); setPuzzleTask(data); SetContentLoaded(true)});
+    .then(response => response.json())
+    .then(data => { console.log(data); setPuzzleTask(data); SetContentLoaded(true)});
+  
+
+  }, 1000)
+
 
   }, [])
 
@@ -166,7 +174,7 @@ function Playboard() {
      }
      else
      {
-         return("waiting....")
+         return( <Loading />)
         }
    
   }
