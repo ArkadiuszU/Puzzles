@@ -24,7 +24,7 @@ function Welcome() {
                <NavBox title="Make puzzle" content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" 
                     buttonText = "Let's make it" navTo ="/create"/>
                <NavBox title="Log in" content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" 
-                    buttonText = "Let's join us" navTo ="/playboard"/>
+                    buttonText = "Let's join us" navTo ="/enter"/>
             </div>
     </div>
     );

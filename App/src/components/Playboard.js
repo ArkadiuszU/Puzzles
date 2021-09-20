@@ -2,6 +2,9 @@ import React , { useState, useEffect, useCallback  } from 'react';
 import { useParams} from 'react-router-dom';
 import Loading from './Loading';
 
+import timeImg from "../resources/img/wall-clock.png";
+import percentImg from "../resources/img/percentage.png";
+
 const W = 600;
 const H = 450;
 const count = 12
@@ -158,8 +161,8 @@ function Playboard() {
     
                     {!endGame?
                     <div className="playboard__dropfield__statarea">
-                          <div> <p> {gameStats.timeM>0?`${gameStats.timeM}m`:""}{gameStats.timeS}s</p><img className="playboard__dropfield__statarea__icon" src="/src/resources/img/wall-clock.png" /> </div>
-                          <div> <p> {gameStats.done} %</p> <img className="playboard__dropfield__statarea__icon" src="/src/resources/img/percentage.png" /> </div>
+                          <div> <p> {gameStats.timeM>0?`${gameStats.timeM}m`:""}{gameStats.timeS}s</p><img className="playboard__dropfield__statarea__icon" src={timeImg} /> </div>
+                          <div> <p> {gameStats.done} %</p> <img className="playboard__dropfield__statarea__icon" src={percentImg} /> </div>
                     </div>
                     :
                     <div className="playboard__dropfield__statarea">
