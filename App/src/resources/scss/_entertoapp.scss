@@ -1,0 +1,134 @@
+.entertoapp__buttons
+{
+    background-color: $base-yellow-color;
+    text-align: center;
+    padding: 1%;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: medium;
+    font-weight: bolder;
+}
+
+.formbox
+        {
+            margin: 1%;
+            width: 80%;
+            height: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+.entertoapp
+{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+
+    
+
+
+    &__imgbox
+    {
+        width: 50%;
+        height: 50%;
+    }
+    &__formbox
+    {
+        width: 40%;
+        height: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &__login
+        {
+            @extend .formbox;
+            margin-top: 5%;
+
+            label
+            {
+                font-size: x-large;
+            }
+
+            &__inputs
+            {
+                height: 100%;
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+            }
+
+            &__button{
+                @extend .entertoapp__buttons;
+                margin-top: 4%
+                
+            }
+        }
+
+        &__loginexternal
+        {
+            @extend .formbox;
+            height: 15%;
+            margin-bottom: 5%;
+        
+            .loginexternal
+            {
+                color:whitesmoke;
+                height: 40%;
+                width: 40%;
+                display: flex;
+                align-items: center;
+
+                &:hover
+                {
+                    cursor: pointer;
+                }
+
+                img
+                {
+                    height: 80%;
+                    margin: 5%;
+                }
+
+                p{
+                    font-size: medium;
+                }
+            }
+
+            &__google
+            {
+                @extend .loginexternal;
+                background-color: #ea4335;
+            }
+
+            &__facebook
+            {
+                @extend .loginexternal;
+                background-color: #3b5998;
+            
+            }
+        }
+
+        &__singup
+        {
+            @extend .formbox;
+            flex-direction: column;
+
+            
+            &__button{
+                @extend .entertoapp__buttons;
+                padding-left: 15%;
+                padding-right: 15%;
+            }
+
+        }
+        
+        
+    }
+}
