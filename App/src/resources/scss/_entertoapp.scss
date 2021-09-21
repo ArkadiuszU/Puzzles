@@ -1,12 +1,51 @@
 .entertoapp__buttons
 {
-    background-color: $base-yellow-color;
+    background-color: transparent;
     text-align: center;
     padding: 1%;
     padding-left: 10%;
     padding-right: 10%;
     font-size: medium;
     font-weight: bolder;
+    position: relative;
+    transition: all .3s;
+    color:lighten(black, 55%);
+              
+    &:before {
+        z-index: -2;
+        transition: all .3s;
+        content: '';
+        position: absolute;
+        top:0;
+        left: 0;
+        background-color: darken($base-yellow-color, 20%);
+        width: 0%;
+        height: 100%
+      }
+
+      &:after {
+        z-index: -3;
+        transition: all .3s;
+        content: '';
+        position: absolute;
+        top:0;
+        left: 0;
+        background-color: $base-yellow-color;
+        width: 100%;
+        height: 100%
+      }
+
+    &:hover
+    {
+        color:black;
+        &:before
+        {
+            width: 100%;
+            
+        }
+    }
+
+
 }
 
 .formbox
@@ -24,12 +63,8 @@
     width: 100vw;
     height: 100vh;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
-
-
-    
-
 
     &__imgbox
     {
@@ -43,6 +78,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-right: 5%;
 
         &__login
         {
@@ -61,13 +97,18 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-
+                input
+                {
+                    border: 2px solid $base-yellow-color;
+                    border-radius: 5px;
+                    padding: 2%;
+                    margin: 1%;
+                }
             }
 
             &__button{
                 @extend .entertoapp__buttons;
-                margin-top: 4%
-                
+                margin-top: 4%;
             }
         }
 
