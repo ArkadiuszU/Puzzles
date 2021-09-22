@@ -35,7 +35,7 @@ workflows:
     jobs:
       - test
       - cypress/run:
-         project: ./Tests
+         command: npx cypress run --project ./Tests --config video=false
          requires:
             - test # only run deploy-via-git job if the build job has completed
       - heroku/deploy-via-git:
