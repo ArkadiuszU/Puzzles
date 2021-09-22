@@ -34,13 +34,12 @@ workflows:
     jobs:
       - test
       - cypress/run:
-         name: e2e Tests
          requires:
             - test # only run deploy-via-git job if the build job has completed
       - heroku/deploy-via-git:
           force: true # this parameter instructs the push to use a force flag when pushing to the heroku remote, see: https://devcenter.heroku.com/articles/git
           requires:
-            - e2e Tests # only run deploy-via-git job if the build job has completed
+            - cypress/run # only run deploy-via-git job if the build job has completed
           filters:
             branches:
               only: master
