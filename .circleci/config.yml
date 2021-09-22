@@ -36,6 +36,7 @@ workflows:
       - test
       - cypress/run:
          start: 'npm start'
+         wait-on: 'http://localhost:3000'
          command: npx cypress run --project ./Tests --config video=false
          requires:
             - test # only run deploy-via-git job if the build job has completed
