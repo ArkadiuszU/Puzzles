@@ -22,23 +22,25 @@ jobs:
           name: Run unit Tests
           command: npm run test:unit
       - run:
-          name: Run e2e Tests
-          command: npm run cy:run
-      - run:
           name: build to deploy
           command: npm run build
           
 orbs:
+  cypress: cypress-io/cypress@1
   heroku: circleci/heroku@1.2
 
 workflows:
   orb-free-workflow:
     jobs:
       - test
+      - cypress/run:
+         name: e2e Tests
+         requires:
+            - test # only run deploy-via-git job if the build job has completed
       - heroku/deploy-via-git:
           force: true # this parameter instructs the push to use a force flag when pushing to the heroku remote, see: https://devcenter.heroku.com/articles/git
           requires:
-            - test # only run deploy-via-git job if the build job has completed
+            - e2e Tests # only run deploy-via-git job if the build job has completed
           filters:
             branches:
               only: master
