@@ -19,8 +19,11 @@ jobs:
           paths:
             - ~/.npm
       - run:
-          name: Run Tests
-          command: npm run test
+          name: Run unit Tests
+          command: npm run test:unit
+      - run:
+          name: Run e2e Tests
+          command: npm run cy:run
       - run:
           name: build to deploy
           command: npm run build

@@ -12,7 +12,7 @@ function NavBox({title, content, buttonText, navTo}) {
                    <p> {content} </p>
                     </div>
                   
-                    <Link onMouseEnter={ () => setHover(true)} onMouseLeave={() => setHover(false)} className= "welcome__navbox__box__button" to={navTo}> {buttonText}</Link>
+                    <Link onMouseEnter={ () => setHover(true)} onMouseLeave={() => setHover(false)}  id={navTo.slice(1)} className= "welcome__navbox__box__button" to={navTo}> {buttonText}</Link>
                 </div>
     );
   }
