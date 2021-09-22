@@ -35,7 +35,6 @@ workflows:
     jobs:
       - test
       - cypress/run:
-         working_directory: ./Tests
          requires:
             - test # only run deploy-via-git job if the build job has completed
       - heroku/deploy-via-git:
