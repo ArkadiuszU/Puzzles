@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  test:
+  install-test-and-build:
     docker:
       - image: cimg/node:15.1
     steps:
@@ -33,13 +33,13 @@ orbs:
 workflows:
   orb-free-workflow:
     jobs:
-      - test
+      - install-test-and-build
       - cypress/run:
          start: 'npm run dev'
          wait-on: 'http://localhost:3000'
          command: npx cypress run --project ./Tests --config video=false
          requires:
-            - test # only run deploy-via-git job if the build job has completed
+            - install-test-and-build # only run deploy-via-git job if the build job has completed
       - heroku/deploy-via-git:
           force: true # this parameter instructs the push to use a force flag when pushing to the heroku remote, see: https://devcenter.heroku.com/articles/git
           requires:
