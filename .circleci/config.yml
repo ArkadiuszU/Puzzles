@@ -21,8 +21,8 @@ jobs:
       - run:
           name: Run unit Tests
           command: npm run test:unit
-      - store_test_results:
-          path: test
+      # - store_test_results:
+      #     path: test
       - run:
           name: build to deploy
           command: npm run build

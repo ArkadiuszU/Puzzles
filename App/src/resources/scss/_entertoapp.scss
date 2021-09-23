@@ -1,6 +1,7 @@
 .entertoapp__buttons
 {
     background-color: transparent;
+    border: 1px solid black;
     text-align: center;
     padding: 1%;
     padding-left: 10%;
@@ -10,6 +11,7 @@
     position: relative;
     transition: all .3s;
     color:lighten(black, 55%);
+    font-size: medium;
               
     &:before {
         z-index: -2;
@@ -166,6 +168,11 @@
                 @extend .entertoapp__buttons;
                 padding-left: 15%;
                 padding-right: 15%;
+                text-decoration: none;
+                font-size: medium;
+                font-weight: bolder;
+                
+
             }
 
         }

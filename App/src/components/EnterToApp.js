@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from 'react';
-
-
-import Loading from "../components/Loading";
-
+import { useHistory } from 'react-router-dom';
 import enterImg from "../resources/img/enter.svg";
 import googleLogo from "../resources/img/google.svg";
 import fbLogo from "../resources/img/facebook.svg";
 
 function EnterToApp() {
 
-  useEffect(() => {
-    console.log("nohej");
-
-
-  }, [])
-
+  const history = useHistory();
+  
   return (
     <div className="entertoapp">
       <img className="entertoapp__imgbox" src={enterImg} ></img>
@@ -43,7 +36,7 @@ function EnterToApp() {
         <div className="entertoapp__formbox__singup">
           <p>if you are here first time create an account</p>
           <p>to get to know all the possibilities offered by the app</p>
-          <button className="entertoapp__formbox__singup__button" >sign up</button>
+          <button onClick={ () => {history.push("/registration")} } className="entertoapp__formbox__singup__button" >sign up</button>
         </div>
       </div>
     </div>
