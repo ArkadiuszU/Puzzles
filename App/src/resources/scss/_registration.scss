@@ -1,0 +1,155 @@
+@keyframes cursor {
+    50%
+    {
+        border-color: transparent;
+    }
+    100%{
+        border-color: black;
+    }
+}
+@keyframes typing {
+    0%
+    {
+        left:-8%
+    }
+    100%{
+        left:100%
+    }
+
+}
+
+@keyframes deleting {
+    0%
+    {
+        left:100%
+    }
+    100%{
+        left:0%
+    }
+}
+
+
+.registration{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    &__profile
+    {
+        width: 35%;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(to bottom right, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+        border-radius: 2rem ;
+        &__avatar
+        {
+            width: 40%;
+        }
+        &__flag
+        {
+            width: 100%;
+            height: 20%;
+            display: flex;
+            justify-content: end;
+   
+            &__img{
+                width: 20%;
+                height: 50%;
+                margin-right: 15%;
+            }
+
+            &__img--without-a-flag
+            {
+                width: 20%;
+                height: 50%;
+                margin-right: 15%;
+                border: solid 2px grey;
+            }
+
+        }
+        &__nickname
+        {
+            width: 80%;
+            margin-left: 20%;
+            //height: 20%;
+            background-color: #65dfc9;
+            //background-color: red;
+            display:flex;
+            //justify-content: center;
+
+            h2
+            {
+                background-color: #65dfc9;
+                position: relative;
+                overflow: hidden;
+                font-family: monospace;
+                text-align: center;
+                padding-right: 1%;
+                
+            }
+
+            h2::after
+            {
+                content: "";
+                //background: linear-gradient(to bottom right, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+                background-color: #65dfc9;
+                border-left: 5px solid black;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+               
+            }
+
+            
+            .nickname-typing::after
+            {
+                animation: cursor .8s infinite linear, typing 2s backwards steps(13, start);
+            }
+            .nickname-deleting::after
+            {
+                animation: cursor .8s infinite linear, deleting 1s forwards steps(14, start);
+            }
+        }
+
+    }
+
+    &__formbox
+    {
+        width: 35%;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+
+        &__singup-inputs
+        {
+            width: 75%;
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            label
+            {
+                font-size: x-large;
+            }
+
+            input, 
+            select
+                {
+                    border: 2px solid $base-yellow-color;
+                    border-radius: 5px;
+                    padding: 1%;
+                    margin: 1%;
+                }
+
+               
+
+        }
+    }
+}

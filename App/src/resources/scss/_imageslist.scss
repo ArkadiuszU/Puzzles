@@ -1,6 +1,7 @@
 .imageslist
 {
     @extend .main-container;
+
     display: flex;
     justify-content: start;
     padding-top: 4%;
@@ -10,6 +11,7 @@
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
+    //background: linear-gradient(to bottom right, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
 
     &__container
     {
