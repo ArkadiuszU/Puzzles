@@ -9,22 +9,23 @@ function Registration() {
   const [nations, setNations] = useState([]);
   const [selectedNations, setSelectedNations] = useState(null);
 
-  const [typing, setTyping] = useState(false);
+  const [typing, setTyping] = useState({ value: false, firstTime: true });
   const [nickname, setNickname] = useState("your nickname");
 
   useEffect(() => {
 
     fetch('https://flagcdn.com/en/codes.json')
       .then(response => response.json())
-      .then(data => { console.log(data); setNations(data) });
+      .then(data => {setNations(data) });
 
   }, [])
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    console.log(selectedNations)
 
-  }, [selectedNations])
+  //   console.log(typing)
+
+  // }, [typing])
 
   return (
     <div className="registration">
@@ -35,8 +36,8 @@ function Registration() {
         </div>
         <div className="registration__profile__nickname">
 
-          <h2 data-foo={nickname.length} className= {(typing)?"nickname-deleting":"nickname-typing"}>{nickname}</h2>
-    
+          <h2 className={(typing.firstTime) ? (typing.value) ? "nickname-deleting" : "nickname-typing" : "nickname-disable"} >{nickname}</h2>
+
         </div>
 
 
@@ -60,14 +61,20 @@ function Registration() {
           <input type="text" id="lastname" />
 
           <label htmlFor="nickname">nickname: </label>
-          <input onBlur = {(e) => {setTyping(false); setNickname(e.target.value)  } } onFocus = {() => setTyping(true)} type="text" id="nickname" />
+          <input onChange={(e) => {
+            setNickname(e.target.value);
+            if (typing.firstTime === true)
+              setTyping(prev => { return { ...prev, firstTime: false } })
+          }}
+            onFocus={() => setTyping(prev => { return { ...prev, value: true } })} type="text" id="nickname" />
+
 
           <label htmlFor="sex">sex: </label>
           <input type="checkbox" id="sex" checked={sex} onChange={() => { setSex(prev => !prev) }} />
 
           <label htmlFor="nation">Nation: </label>
           <select id="nation" onChange={(e) => setSelectedNations(e.target.value)} >
-            <option value="" selected disabled hidden>Choose here</option>
+            <option defaultValue="" hidden >Choose here</option>
             {
               Object.keys(nations).map(key => {
                 return <option key={key} value={key}>{nations[key]}</option>

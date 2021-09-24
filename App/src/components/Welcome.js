@@ -5,7 +5,6 @@ import NavBox from "./NavBox";
 import puzzleIco from "../resources/img/puzzle-ico.png";
 import welcomeImg from "../resources/img/hello.svg";
 
-console.log(puzzleIco);
 
 function Welcome() {
     return (

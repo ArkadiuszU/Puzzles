@@ -25,7 +25,7 @@ for (let row = 0; row < R; row++) {
     }
   }
 
-console.log(allPuzzlePieces)
+//console.log(allPuzzlePieces)
 
 const result = allPuzzlePieces.map(el=> {return el.id})
 
