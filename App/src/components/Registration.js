@@ -16,7 +16,7 @@ function Registration() {
 
     fetch('https://flagcdn.com/en/codes.json')
       .then(response => response.json())
-      .then(data => {setNations(data) });
+      .then(data => { setNations(data) });
 
   }, [])
 
@@ -61,18 +61,37 @@ function Registration() {
           <input type="text" id="lastname" />
 
           <label htmlFor="nickname">nickname: </label>
-          <input onChange={(e) => {
-            setNickname(e.target.value);
-            if (typing.firstTime === true)
-              setTyping(prev => { return { ...prev, firstTime: false } })
-          }}
-            onFocus={() => setTyping(prev => { return { ...prev, value: true } })} type="text" id="nickname" />
+          <input
+            onChange={(e) => {
+              setNickname(e.target.value);
+              if (typing.firstTime === true)
+                setTyping(prev => { return { ...prev, firstTime: false } })
+            }}
+            onFocus={() =>
+              setTyping(prev => { return { ...prev, value: true } })}
+            type="text"
+            id="nickname"
+          />
 
 
-          <label htmlFor="sex">sex: </label>
-          <input type="checkbox" id="sex" checked={sex} onChange={() => { setSex(prev => !prev) }} />
+          <label htmlFor="gender">gender: </label>
+          <div className="registration__formbox__singup-inputs__gender">
+            <label className="registration__formbox__singup-inputs__gender__radio" >
+              <input type="radio" name="gender" checked={sex} onChange={() => { setSex(prev => !prev) }} />
+              <span></span>
+           M
+          </label>
 
-          <label htmlFor="nation">Nation: </label>
+            <label className="registration__formbox__singup-inputs__gender__radio" >
+              <input onChange={()=> console.log("change")} type="radio" name="gender" checked={sex} onChange={() => { setSex(prev => !prev) }} />
+              <span></span>
+           F
+          </label>
+          </div>
+
+
+
+          <label htmlFor="nation">nation: </label>
           <select id="nation" onChange={(e) => setSelectedNations(e.target.value)} >
             <option defaultValue="" hidden >Choose here</option>
             {
