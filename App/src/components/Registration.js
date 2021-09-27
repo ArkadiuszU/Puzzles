@@ -5,7 +5,7 @@ import femaleAvatarImg from "../resources/img/female_avatar.svg";
 
 function Registration() {
 
-  const [sex, setSex] = useState(true);
+  const [gender, setGender] = useState(true);
   const [nations, setNations] = useState([]);
   const [selectedNations, setSelectedNations] = useState(null);
 
@@ -30,8 +30,19 @@ function Registration() {
   return (
     <div className="registration">
       <div className="registration__profile">
-        <img className="registration__profile__avatar" src={(sex) ? maleAvatarImg : femaleAvatarImg} ></img>
+        <img className="registration__profile__avatar" src={(gender) ? maleAvatarImg : femaleAvatarImg} ></img>
         <div className="registration__profile__flag">
+
+          <div className="registration__profile__flag__stat" >
+
+            <div>
+              <span>0</span>
+              <p> level </p>
+              <div>0 points</div>
+            </div>
+
+
+          </div>
           {(selectedNations != null) ? <img className="registration__profile__flag__img" src={`https://flagcdn.com/w160/${selectedNations}.png`} /> : <div className="registration__profile__flag__img--without-a-flag" ></div>}
         </div>
         <div className="registration__profile__nickname">
@@ -76,18 +87,23 @@ function Registration() {
 
           <label htmlFor="gender">gender: </label>
           <div className="registration__formbox__singup-inputs__gender">
+
             <label className="registration__formbox__singup-inputs__gender__radio" >
-              <input type="radio" name="gender" checked={sex} onChange={() => { setSex(prev => !prev) }} />
-              <span></span>
+              <input type="radio" checked={gender} onChange={() => { setGender(true) }} />
+              <span>  <div className={(gender) ? "registration__formbox__singup-inputs__gender__radio--selected" : ""} > </div> </span>
            M
           </label>
 
             <label className="registration__formbox__singup-inputs__gender__radio" >
-              <input onChange={()=> console.log("change")} type="radio" name="gender" checked={sex} onChange={() => { setSex(prev => !prev) }} />
-              <span></span>
+              <input type="radio" checked={!gender} onChange={() => { setGender(false) }} />
+
+              <span> <div className={(!gender) ? "registration__formbox__singup-inputs__gender__radio--selected" : ""} > </div></span>
            F
           </label>
+
+          <input type="date"/>
           </div>
+         
 
 
 

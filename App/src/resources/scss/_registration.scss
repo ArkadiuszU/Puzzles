@@ -53,20 +53,64 @@
             width: 100%;
             height: 20%;
             display: flex;
-            justify-content: end;
+            justify-content: space-around;
    
+            &__stat
+            {
+                width: 20%;
+                height: 50%;
+                color: whitesmoke;
+             
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                div
+                {
+                    background-color: $base-blue-color;
+                    width: 75%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    
+
+                    span
+                    {
+                        font-size: xx-large;
+                    }
+                    p
+                    {
+                        margin-bottom: 5%;
+                    }
+                }
+
+
+
+            }
+
             &__img{
                 width: 20%;
                 height: 50%;
-                margin-right: 15%;
             }
 
             &__img--without-a-flag
             {
                 width: 20%;
                 height: 50%;
-                margin-right: 15%;
-                border: solid 2px grey;
+                border: solid 2px black;
+
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                opacity: 30%;
+
+                &::before
+                {
+                    content: "choose nation";
+                    position: absolute;
+                }
             }
 
         }
@@ -75,11 +119,11 @@
             width: 80%;
             height: 7%;
             margin-left: 20%;
-            background-color: #65dfc9;
+            background-color: $base-green-color;
             display: flex;
             h2
             {
-                background-color: #65dfc9;
+                background-color: $base-green-color;
                 position: relative;
                 overflow: hidden;
                 font-family: monospace;
@@ -90,8 +134,8 @@
             h2::after
             {
                 content: "";
-                background-color: #65dfc9;
-                border-left: 5px solid black;
+                background-color: $base-green-color;
+                border-left: 5px solid $dark-color;
                 position: absolute;
                 width: 100%;
                 height: 100%;
@@ -99,11 +143,11 @@
 
             .nickname-typing::after
             {
-                animation: cursor .8s infinite linear, typing 2s backwards steps(13, start);
+                animation: cursor .8s infinite linear, typing 1.5s backwards steps(14, start);
             }
             .nickname-deleting::after
             {
-                animation: cursor .8s infinite linear, deleting 1s forwards steps(14, start);
+                animation: cursor .8s infinite linear, deleting 0.8s forwards steps(14, start);
             }
             .nickname-disable::after
             {
@@ -145,34 +189,48 @@
 
                 &__gender
                 {
-
                     display: flex;
+                    margin-bottom: 2%;
                     &__radio
                     {
                         margin: 1%;
-                       
                         display: flex;
-
+                        justify-content: center;
                         font-size: x-large;
-                        margin-right: 10%;
-                        
+                       
+                        height: 100%;
+                        width: 15%;
+                        cursor: pointer;
+                       
+                   
                         span{
                             border: 4px solid $base-yellow-color;
-                            border-radius: 50px;
-                            padding: 3%;
+                            border-radius: 50%;
                             background-color: white;
-                            margin-right: 2%;
+                            height: 90%;
+                            width: 45%;
 
-                            height: 30px;
-                        flex-shrink: 0;
-                        flex-basis: 30px;
+                            position: relative;
+
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin-right: 10%
                         };
+
+                        &--selected
+                        {
+                            background-color: $base-green-color;
+                            width: 50%;
+                            height: 50%;
+                            border-radius: 50%;
+                            position: absolute; 
+                        }
 
                         input{
                             position: absolute;
                             opacity: 0;
-                            height: 0;
-                            width: 0;
+                  
                         }
                     }
                 }

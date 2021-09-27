@@ -1,5 +1,7 @@
-$base-color: #5bccf6;
+$base-blue-color: #5bccf6;
+$base-green-color: #65dfc9;
 $base-yellow-color: #ffe477;
+
 $dark-color: #030e12;
 
 @import "reset";
@@ -16,7 +18,7 @@ $dark-color: #030e12;
 body{
 
     
-    background: linear-gradient(to top right, #65dfc9, #6cbdeb);
+    background: linear-gradient(to top right, $base-green-color,  $base-blue-color);
     font-family: 'Righteous', cursive;
 
     h1{
