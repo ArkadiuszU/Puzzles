@@ -15,9 +15,26 @@ $dark-color: #030e12;
 
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
+
+
+@mixin invalidInput($content) {
+        border: 2px solid red;
+        position: relative;
+        overflow: visible;
+    
+        &::before
+        {
+            content: $content;
+            color: red;
+            font-size: large;
+            position: absolute;
+            left: 0;
+            bottom: -20px;
+        };
+}
+
 body{
 
-    
     background: linear-gradient(to top right, $base-green-color,  $base-blue-color);
     font-family: 'Righteous', cursive;
 
@@ -48,6 +65,11 @@ body{
             display: flex;
             border-radius: 2rem ;
         }
+    }
+
+    .input-validation-fault
+    {
+        @include invalidInput("empty")
     }
 
 }

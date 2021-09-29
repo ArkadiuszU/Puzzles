@@ -13,11 +13,19 @@ function Registration() {
                                             "repeatPassword": "",
                                             "name": "",
                                             "lastName": "",
-                                            "nickname": null,
+                                            "nickname": undefined,
                                             "gender": true,
                                             "dateOfBirth": "",
-                                            "nation": null,
+                                            "nation": "",
                                           })
+   const[formValidation, setFormValidation] = useState({
+                                          "email": undefined,
+                                          "password": undefined,
+                                          "repeatPassword": undefined,
+                                          "nickname": undefined,
+                                          "dateOfBirth": undefined,
+                                          "nation": undefined,
+                                        })                                  
 
   useEffect(() => {
 
@@ -45,6 +53,20 @@ function Registration() {
     }
   }
 
+  const inputValidation = ()=>
+  {
+    console.log("start validation")
+    Object.keys(formValidation).forEach(el => 
+      {
+        console.log(el)
+        if(formData[el] === "" || formData[el] === undefined)
+        {
+          console.log("is empty")
+          setFormValidation(prev => {return {...prev, [el]: "empty field"} })
+        }
+      })
+  }
+
   return (
     <div className="registration">
       <div className="registration__profile">
@@ -61,7 +83,7 @@ function Registration() {
 
 
           </div>
-          {(formData.nation != null) ? <img className="registration__profile__flag__img" src={`https://flagcdn.com/w160/${formData.nation}.png`} /> : <div className="registration__profile__flag__img--without-a-flag" ></div>}
+          {(formData.nation != "") ? <img className="registration__profile__flag__img" src={`https://flagcdn.com/w160/${formData.nation}.png`} /> : <div className="registration__profile__flag__img--without-a-flag" ></div>}
         </div>
         <div className="registration__profile__nickname">
 
@@ -75,13 +97,13 @@ function Registration() {
         <form className="registration__formbox__singup-inputs">
 
           <label htmlFor="email">email: </label>
-          <input type="text" id="email" value = {formData.email} name="email" onChange={inputChangeHandler}  />
+          <input type="text" id="email" value = {formData.email} name="email" onChange={inputChangeHandler} className={formValidation.email?"input-validation-fault":""} />
 
           <label htmlFor="password">password: </label>
-          <input type="password" id="password" value = {formData.password} name="password" onChange={inputChangeHandler} />
+          <input type="password" id="password" value = {formData.password} name="password" onChange={inputChangeHandler} className={formValidation.password?"input-validation-fault":""}/>
 
           <label htmlFor="repeat-password">repeat-password: </label>
-          <input type="password" id="repeat-password" value = {formData.repeatPassword} name="repeatPassword"  onChange={inputChangeHandler} />
+          <input type="password" id="repeat-password" value = {formData.repeatPassword} name="repeatPassword"  onChange={inputChangeHandler} className={formValidation.password?"input-validation-fault":""}/>
 
           <label htmlFor="name">name: </label>
           <input type="text" id="name" value = {formData.name} name="name" onChange={inputChangeHandler} />
@@ -101,6 +123,7 @@ function Registration() {
             id="nickname"
             value= {formData.nickname}
             name="nickname"
+            className={formValidation.nickname?"input-validation-fault":""}
           />
 
 
@@ -124,7 +147,8 @@ function Registration() {
 
             <div className="registration__formbox__singup-inputs__boxes__date-box">
               <label htmlFor="date">date of birth: </label>
-              <input type="date"  value= {formData.dateOfBirth} name="dateOfBirth" onChange={inputChangeHandler} />
+              <input className={formValidation.dateOfBirth?"input-validation-fault":""}  type="date"  value= {formData.dateOfBirth} name="dateOfBirth" onChange={inputChangeHandler}/> 
+              
             </div>
 
           </div>
@@ -133,7 +157,7 @@ function Registration() {
 
 
           <label htmlFor="nation">nation: </label>
-          <select id="nation" name="nation" value={formData.nation} onChange={inputChangeHandler} >
+          <select id="nation" name="nation" value={formData.nation} onChange={inputChangeHandler} className={formValidation.dateOfBirth?"input-validation-fault":""}>
             <option defaultValue="" hidden >Choose here</option>
             {
               Object.keys(nations).map(key => {
@@ -146,7 +170,7 @@ function Registration() {
 
 
         </form>
-        <button className="entertoapp__formbox__singup__button" >sign up</button>
+        <button className="entertoapp__formbox__singup__button" onClick={inputValidation} > sign up</button>
       </div>
     </div>
   );
