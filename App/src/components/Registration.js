@@ -5,12 +5,19 @@ import femaleAvatarImg from "../resources/img/female_avatar.svg";
 
 function Registration() {
 
-  const [gender, setGender] = useState(true);
+ 
   const [nations, setNations] = useState([]);
-  const [selectedNations, setSelectedNations] = useState(null);
-
-  const [typing, setTyping] = useState({ value: false, firstTime: true });
-  const [nickname, setNickname] = useState("your nickname");
+  const [typing, setTyping] = useState("typing"); //typing or deleting or disable
+  const[formData, setFormData] = useState({"email": "",
+                                            "password": "",
+                                            "repeatPassword": "",
+                                            "name": "",
+                                            "lastName": "",
+                                            "nickname": null,
+                                            "gender": true,
+                                            "dateOfBirth": "",
+                                            "nation": null,
+                                          })
 
   useEffect(() => {
 
@@ -20,17 +27,28 @@ function Registration() {
 
   }, [])
 
-  // useEffect(() => {
+  useEffect(() => {
+    if(typing==="deleting")
+      setTyping("disable")
+  }, [formData.nickname])
 
 
-  //   console.log(typing)
-
-  // }, [typing])
+  const inputChangeHandler = (e)=>
+  {
+    const {name, value, type} = e.target
+    if(type =="radio")
+    {
+      setFormData(prev => { return  {...prev, [name] : !prev[name] }})
+    }
+    else{
+      setFormData(prev => { return  {...prev, [name] : value }})
+    }
+  }
 
   return (
     <div className="registration">
       <div className="registration__profile">
-        <img className="registration__profile__avatar" src={(gender) ? maleAvatarImg : femaleAvatarImg} ></img>
+        <img className="registration__profile__avatar" src={(formData.gender) ? maleAvatarImg : femaleAvatarImg} ></img>
         <div className="registration__profile__flag">
 
           <div className="registration__profile__flag__stat" >
@@ -43,11 +61,11 @@ function Registration() {
 
 
           </div>
-          {(selectedNations != null) ? <img className="registration__profile__flag__img" src={`https://flagcdn.com/w160/${selectedNations}.png`} /> : <div className="registration__profile__flag__img--without-a-flag" ></div>}
+          {(formData.nation != null) ? <img className="registration__profile__flag__img" src={`https://flagcdn.com/w160/${formData.nation}.png`} /> : <div className="registration__profile__flag__img--without-a-flag" ></div>}
         </div>
         <div className="registration__profile__nickname">
 
-          <h2 className={(typing.firstTime) ? (typing.value) ? "nickname-deleting" : "nickname-typing" : "nickname-disable"} >{nickname}</h2>
+          <h2 className={`nickname-${typing}`} >{(formData.nickname == null) ?"your nickname":formData.nickname}</h2>
 
         </div>
 
@@ -57,58 +75,65 @@ function Registration() {
         <form className="registration__formbox__singup-inputs">
 
           <label htmlFor="email">email: </label>
-          <input type="text" id="email" />
+          <input type="text" id="email" value = {formData.email} name="email" onChange={inputChangeHandler}  />
 
           <label htmlFor="password">password: </label>
-          <input type="password" id="password" />
+          <input type="password" id="password" value = {formData.password} name="password" onChange={inputChangeHandler} />
 
           <label htmlFor="repeat-password">repeat-password: </label>
-          <input type="password" id="repeat-password" />
+          <input type="password" id="repeat-password" value = {formData.repeatPassword} name="repeatPassword"  onChange={inputChangeHandler} />
 
           <label htmlFor="name">name: </label>
-          <input type="text" id="name" />
+          <input type="text" id="name" value = {formData.name} name="name" onChange={inputChangeHandler} />
 
           <label htmlFor="lastname">last name: </label>
-          <input type="text" id="lastname" />
+          <input type="text" id="lastname"  value = {formData.lastName} name="lastName"  onChange={inputChangeHandler}/>
 
-          <label htmlFor="nickname">nickname: </label>
+          <label htmlFor="nickname"> nickname: </label>
           <input
             onChange={(e) => {
-              setNickname(e.target.value);
-              if (typing.firstTime === true)
-                setTyping(prev => { return { ...prev, firstTime: false } })
+              inputChangeHandler(e); 
             }}
-            onFocus={() =>
-              setTyping(prev => { return { ...prev, value: true } })}
+            onFocus={() => {
+              if(typing === "typing")
+              setTyping("deleting")}}
             type="text"
             id="nickname"
+            value= {formData.nickname}
+            name="nickname"
           />
 
 
-          <label htmlFor="gender">gender: </label>
-          <div className="registration__formbox__singup-inputs__gender">
 
-            <label className="registration__formbox__singup-inputs__gender__radio" >
-              <input type="radio" checked={gender} onChange={() => { setGender(true) }} />
-              <span>  <div className={(gender) ? "registration__formbox__singup-inputs__gender__radio--selected" : ""} > </div> </span>
-           M
-          </label>
+          <div className="registration__formbox__singup-inputs__boxes" >
+            <div className="registration__formbox__singup-inputs__boxes__gender-box" >
+              <label htmlFor="gender">gender: </label>
+              <div className="registration__formbox__singup-inputs__boxes__gender-box__box">
+                <label className="registration__formbox__singup-inputs__boxes__gender-box__box__radio" >
+                  <input type="radio" id = "genderM" name="gender" checked={formData.gender} onChange={inputChangeHandler} />
+                  <span>  <div className={(formData.gender) ? "registration__formbox__singup-inputs__boxes__gender-box__box__radio--selected" : ""} > </div> </span>
+                  M
+                </label>
+                <label className="registration__formbox__singup-inputs__boxes__gender-box__box__radio" >
+                  <input type="radio" id="genderF" name="gender" checked={!formData.gender}  onChange={inputChangeHandler} />
+                  <span> <div className={(!formData.gender) ? "registration__formbox__singup-inputs__boxes__gender-box__box__radio--selected" : ""} > </div></span>
+                  F
+                </label>
+              </div>
+            </div>
 
-            <label className="registration__formbox__singup-inputs__gender__radio" >
-              <input type="radio" checked={!gender} onChange={() => { setGender(false) }} />
+            <div className="registration__formbox__singup-inputs__boxes__date-box">
+              <label htmlFor="date">date of birth: </label>
+              <input type="date"  value= {formData.dateOfBirth} name="dateOfBirth" onChange={inputChangeHandler} />
+            </div>
 
-              <span> <div className={(!gender) ? "registration__formbox__singup-inputs__gender__radio--selected" : ""} > </div></span>
-           F
-          </label>
-
-          <input type="date"/>
           </div>
-         
+
 
 
 
           <label htmlFor="nation">nation: </label>
-          <select id="nation" onChange={(e) => setSelectedNations(e.target.value)} >
+          <select id="nation" name="nation" value={formData.nation} onChange={inputChangeHandler} >
             <option defaultValue="" hidden >Choose here</option>
             {
               Object.keys(nations).map(key => {
