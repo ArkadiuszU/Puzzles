@@ -1,22 +1,28 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, {useContext, useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import Loading from './Loading';
+import ImageListContext from './Context'
 
 function ImagesList() {
 
-  const [puzzleTasks, setPuzzleTasks] = useState([])
   const [elementHovered, SetElementHovered] = useState(false)
+
+  const {puzzleTasks, setPuzzleTasks} = useContext(ImageListContext);
 
   useEffect(() => {
 
 
-    setTimeout(_ => {
+    if(puzzleTasks.length === 0)
+    {
+
+    setTimeout( () => {
 
       fetch('https://puzzlesapi.azurewebsites.net/api/PuzzleTask')
         .then(response => response.json())
         .then(data => { console.log(data); setPuzzleTasks(data) });
 
     }, 2000)
+  }
 
   }, [])
 
@@ -36,7 +42,7 @@ function ImagesList() {
 
                 <Link key={id} to={`/playboard/${id + 1}`}>
                   <div  className="imageslist__container__element" onMouseLeave={_ => SetElementHovered(false)} onMouseOver={_ => SetElementHovered(id)}>
-                    <p> {el.name}</p>
+                    <p > {el.name}</p>
                     <img className={`imageslist__container__element__img${(elementHovered === id) ? "--hovered" : ""}`} src={el.imagePath} />
                   </div>
                 </Link>

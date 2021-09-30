@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import { BrowserRouter as Router, Route, Switch,} from 'react-router-dom';
@@ -10,9 +9,14 @@ import CreateNew from "./components/CreateNew";
 import EnterToApp from "./components/EnterToApp";
 import Registration from "./components/Registration";
 
+import ImageListContext from './components/Context';
+
 import './resources/scss/index.scss';
 
 function App(props) {
+
+  const [puzzleTasks, setPuzzleTasks] = useState([])
+
   return (
     <Router>
        <div className="main">
@@ -20,7 +24,7 @@ function App(props) {
        
           <Route path="/" exact={true}> <Welcome/> </Route>
           <Route path="/playboard/:id" exact={true}> <Playboard /> </Route>
-          <Route path="/imagesList" exact={true}> <ImagesList /> </Route>
+          <Route path="/imagesList" exact={true}> <ImageListContext.Provider value={{puzzleTasks, setPuzzleTasks}}><ImagesList /></ImageListContext.Provider> </Route>
           <Route path="/create" exact={true}> <CreateNew /> </Route>
           <Route path="/enter" exact={true}> <EnterToApp /> </Route>
           <Route path="/registration" exact={true}> <Registration /> </Route>
