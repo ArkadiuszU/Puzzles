@@ -28,6 +28,26 @@
     }
 }
 
+
+@mixin invalidInput($content) {
+       
+    & + input,
+    & + select
+    {
+        border: 2px solid red;
+    }
+    &::after
+    {
+        content: $content;
+        color: red;
+        font-size: small;
+        position: absolute;
+        left: 0;
+        bottom: -50px;
+    };
+}
+
+
 .registration{
     width: 100vw;
     height: 100vh;
@@ -169,13 +189,15 @@
         &__singup-inputs
         {
             width: 75%;
-            height: 80%;
+            height: 85%;
             display: flex;
             flex-direction: column;
             justify-content: center;
+          
 
             label[for] {
                 font-size: x-large;
+                position: relative;
               }
 
             input, 
@@ -184,11 +206,10 @@
                     border: 2px solid $base-yellow-color;
                     border-radius: 5px;
                     padding: 1%;
-                    margin: 1%;
+                    margin-bottom: 4%;
+                    margin-top: 1%;
                 }
-            
-            
-               
+           
             &__boxes
                 {
                     width: 100%;
@@ -268,5 +289,28 @@
 
 
         }
+    }
+}
+
+
+
+
+.input-validation-fault
+{
+    &--empty
+    {
+        @include invalidInput("empty")
+    }
+    &--email
+    {
+        @include invalidInput("email")
+    }
+    &--password
+    {
+        @include invalidInput("password")
+    }
+    &--re-password
+    {
+        @include invalidInput("re-password")
     }
 }
