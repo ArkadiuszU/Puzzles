@@ -54,41 +54,46 @@ function Registration() {
 
   const inputValidation = () => {
     console.log("start validation")
+
+    let isFault = false;
+
     Object.keys(formValidation).forEach(el => {
       console.log(el)
       if (formData[el] === "" || formData[el] === undefined) {
         console.log("is empty")
         setFormValidation(prev => { return { ...prev, [el]: "empty" } })
+        isFault = true
       }
       else {
-
         if (el === "email") {
           if (!validateEmail(formData.email)) {
             setFormValidation(prev => { return { ...prev, email: "email" } })
+            isFault = true
           }
           else {
             setFormValidation(prev => { return { ...prev, email: undefined } })
           }
         }
-
         else if (el === "password") {
           if (formData.password.length < 6) {
             setFormValidation(prev => { return { ...prev, password: "password" } })
+            isFault = true
           }
           else {
             setFormValidation(prev => { return { ...prev, password: undefined } })
             
           }
         }
-
         else if (el === "repeatPassword") {
           if (formData.password.length < 6) {
             setFormValidation(prev => { return { ...prev, repeatPassword: "re-password" } })
+            isFault = true
           }
           else {
             if(formData.repeatPassword != formData.password)
             {
               setFormValidation(prev => { return { ...prev, repeatPassword: "re-password" } })
+              isFault = true
             }
             else{
               setFormValidation(prev => { return { ...prev, repeatPassword: undefined } })
@@ -98,12 +103,28 @@ function Registration() {
         else{
           setFormValidation(prev => { return { ...prev, [el]: undefined } })
         }
-
-
-
-
       }
     })
+    
+    if(! isFault)
+    {
+      console.log(formData)
+      console.log("singUP")
+      fetch('https://localhost:5001/api/register', {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json',
+            },
+        body: JSON.stringify(formData),
+      })
+      .then(response => response.json())
+      .then(data => {
+      console.log('Success:', data);
+      })
+      .catch((error) => {
+      console.error('Error:', error);
+      });
+    }
   }
 
   const validateEmail = (email) => {
