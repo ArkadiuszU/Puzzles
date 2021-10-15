@@ -3,10 +3,41 @@ import { useHistory } from 'react-router-dom';
 import enterImg from "../resources/img/enter.svg";
 import googleLogo from "../resources/img/google.svg";
 import fbLogo from "../resources/img/facebook.svg";
+import jwt_decode from "jwt-decode";
 
 function EnterToApp() {
 
   const history = useHistory();
+
+  const [loginForm, setLoginForm] = useState({email: "ab@example.com", password: "123456"});
+
+  const singIn = () =>
+  {
+    const claimsString = "http://schemas.microsoft.com/ws/2008/06/identity/claims/"
+    console.log("logowanie")
+    console.log(loginForm)
+    fetch('https://localhost:5001/api/login', {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json',
+            },
+        body: JSON.stringify(loginForm),
+      })
+      .then(response => response.text())
+      .then(data => {
+      console.log(data);
+      console.log("----------")
+      var decoded = jwt_decode(data)[claimsString + "role"];
+      console.log(decoded);
+      })
+      .catch((error) => {
+      console.error('Error:', error);
+      });
+  } 
+  const loginFormChange = (e) => {
+    const {name, value} = e.target
+    setLoginForm(prev => {return {...prev, [name]: value}})
+  }
   
   return (
     <div className="entertoapp">
@@ -16,11 +47,11 @@ function EnterToApp() {
         <div className="entertoapp__formbox__login">
           <form className="entertoapp__formbox__login__inputs">
             <label htmlFor="email">email: </label>
-            <input type="text" id="email" />
+            <input type="text" id="email" name = "email" value= {loginForm.email} onChange={loginFormChange} />
             <label htmlFor="password">password: </label>
-            <input type="password" id="password" />
+            <input type="password" id="password" name = "password" value={loginForm.password} onChange={loginFormChange}  />
           </form>
-          <button className="entertoapp__formbox__login__button" >sign in</button>
+          <button className="entertoapp__formbox__login__button" onClick={singIn}  >sign in</button>
         </div>
         <div className="entertoapp__formbox__loginexternal">
           <div className="entertoapp__formbox__loginexternal__google">

@@ -6,8 +6,8 @@
     "dev": "webpack serve --mode development",
     "build": "webpack --mode production",
     "test:unit": "jest --testPathPattern = ./Tests/Unit",
-    "cy:open":"cypress open --project ./Tests",
-    "cy:run":"cypress run --project ./Tests --config video=false"
+    "cy:open": "cypress open --project ./Tests",
+    "cy:run": "cypress run --project ./Tests --config video=false"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
+    "jwt-decode": "^3.1.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-router-dom": "^5.2.0",
