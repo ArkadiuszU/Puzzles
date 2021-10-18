@@ -1,14 +1,19 @@
-import React from 'react';
+import React , { useState, useEffect, useCallback, useContext  } from 'react';
+import { LoginContext } from './Contexts/Contexts';
 
 import NavBox from "./NavBox";
 
 import puzzleIco from "../resources/img/puzzle-ico.png";
 import welcomeImg from "../resources/img/hello.svg";
 
+import Profile from "./Profile"
 
 function Welcome() {
+    const {loginData, setLoginData} = useContext(LoginContext);
     return (
+        
         <div className= "welcome"  >
+            <Profile name={loginData.name}/>
             <div className="welcome__header">
                 <div className="welcome__header__text">
                     <h1>Hello !</h1>

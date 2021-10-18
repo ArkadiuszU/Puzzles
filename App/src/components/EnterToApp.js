@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect , useContext} from 'react';
 import { useHistory } from 'react-router-dom';
 import enterImg from "../resources/img/enter.svg";
 import googleLogo from "../resources/img/google.svg";
 import fbLogo from "../resources/img/facebook.svg";
 import jwt_decode from "jwt-decode";
+import { LoginContext } from './Contexts/Contexts';
 
 function EnterToApp() {
 
   const history = useHistory();
 
+  const {loginData, setLoginData} = useContext(LoginContext);
+
   const [loginForm, setLoginForm] = useState({email: "ab@example.com", password: "123456"});
 
   const singIn = () =>
   {
-    const claimsString = "http://schemas.microsoft.com/ws/2008/06/identity/claims/"
-    console.log("logowanie")
-    console.log(loginForm)
+    const claimsString = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
     fetch('https://localhost:5001/api/login', {
         method: 'POST', 
         headers: {
@@ -25,10 +26,9 @@ function EnterToApp() {
       })
       .then(response => response.text())
       .then(data => {
-      console.log(data);
-      console.log("----------")
-      var decoded = jwt_decode(data)[claimsString + "role"];
-      console.log(decoded);
+        var decoded = jwt_decode(data)[claimsString];
+        setLoginData({name: decoded, token: data})
+        history.push("/")
       })
       .catch((error) => {
       console.error('Error:', error);
@@ -38,7 +38,10 @@ function EnterToApp() {
     const {name, value} = e.target
     setLoginForm(prev => {return {...prev, [name]: value}})
   }
-  
+
+  useEffect(()=> { console.log(loginData)},
+  [loginData])
+
   return (
     <div className="entertoapp">
       <img className="entertoapp__imgbox" src={enterImg} ></img>

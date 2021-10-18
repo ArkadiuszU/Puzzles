@@ -53,7 +53,7 @@ function Playboard() {
 
   setTimeout(_ => {
 
-    fetch(`https://puzzlesapi.azurewebsites.net/api/PuzzleTask/${id}`)
+    fetch(`https://localhost:5001/api/PuzzleTask/${id}`)
     .then(response => response.json())
     .then(data => { console.log(data); setPuzzleTask(data); SetContentLoaded(true)});
   
