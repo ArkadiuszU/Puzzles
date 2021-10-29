@@ -13,7 +13,7 @@ function Welcome() {
     return (
         
         <div className= "welcome"  >
-            <Profile name={loginData.name}/>
+            <Profile/>
             <div className="welcome__header">
                 <div className="welcome__header__text">
                     <h1>Hello !</h1>

@@ -1,15 +1,22 @@
 import React , { useState, useEffect, useCallback, useContext  } from 'react';
 import { LoginContext } from './Contexts/Contexts';
 
-function Profile({name}) {
-    
+function Profile() {
+  
+  const {loginData, setLoginData} = useContext(LoginContext);
 
-    return (
-                
-               <div>
-                    Name : {name}
+  if(loginData.token != "")
+  {
+    return(      
+               <div className="profil" >
+                    Hello {loginData.name}
                </div>
     );
   }
+  else
+  {
+    return null;
+  }
+}
 
 export default Profile;

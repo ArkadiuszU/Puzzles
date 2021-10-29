@@ -16,7 +16,7 @@ import './resources/scss/index.scss';
 function App(props) {
 
   const [puzzleTasks, setPuzzleTasks] = useState([])
-  const [loginData, setLoginData] = useState({name:"name", token:""})
+  const [loginData, setLoginData] = useState({name:"", token:""})
 
   return (
     <Router>
