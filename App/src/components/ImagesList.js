@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import Loading from './Loading';
 import ImageListContext from './Contexts/ImageListContext'
 
+
+import Profile from "./Profile"
+
 function ImagesList() {
 
   const [elementHovered, SetElementHovered] = useState(false)
@@ -28,6 +31,7 @@ function ImagesList() {
 
   return (
     <div className="imageslist">
+      <Profile/>
       <h2>select yours puzzle to play</h2>
 
       <div className="imageslist__container">

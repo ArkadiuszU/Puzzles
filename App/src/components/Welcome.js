@@ -1,5 +1,5 @@
 import React , { useState, useEffect, useCallback, useContext  } from 'react';
-import { LoginContext } from './Contexts/Contexts';
+
 
 import NavBox from "./NavBox";
 
@@ -7,11 +7,13 @@ import puzzleIco from "../resources/img/puzzle-ico.png";
 import welcomeImg from "../resources/img/hello.svg";
 
 import Profile from "./Profile"
+import { LoginContext } from './Contexts/Contexts';
 
 function Welcome() {
-    const {loginData, setLoginData} = useContext(LoginContext);
+
+    const {loggedUser, setLoggedUser} = useContext(LoginContext);
+
     return (
-        
         <div className= "welcome"  >
             <Profile/>
             <div className="welcome__header">
@@ -27,8 +29,17 @@ function Welcome() {
                     buttonText = "Let's play" navTo ="/imagesList"/>
                <NavBox title="Make puzzle" content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" 
                     buttonText = "Let's make it" navTo ="/create"/>
+                    
+
+                {
+                    (loggedUser == undefined)?
+                    
                <NavBox title="Log in" content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" 
                     buttonText = "Let's join us" navTo ="/enter"/>
+                    :
+                    <NavBox title="Check your position" content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" 
+                    buttonText = "Show ranking" navTo ="/enter"/>
+                }
             </div>
     </div>
     );

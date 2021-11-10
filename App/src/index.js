@@ -16,27 +16,39 @@ import './resources/scss/index.scss';
 function App(props) {
 
   const [puzzleTasks, setPuzzleTasks] = useState([])
-  const [loginData, setLoginData] = useState({name:"", token:""})
+  const [loggedUser, setLoggedUser] = useState({
+    country: "sl",
+email: "ab@example.com",
+gender: "True",
+name: "A B",
+nick: "abab",
+role: "User"
+  })
+
+  //const [loggedUser, setLoggedUser] = useState();
+
 
   return (
     <Router>
-       <div className="main">
+      <div className="main">
       <Switch>
-       
+        <LoginContext.Provider value= {{loggedUser, setLoggedUser}}>
           <Route path="/" exact={true}> 
-            <LoginContext.Provider value= {{loginData, setLoginData}}>
-              <Welcome/> 
-            </LoginContext.Provider>
+            <Welcome/>   
           </Route>
-          <Route path="/playboard/:id" exact={true}> <Playboard /> </Route>
-          <Route path="/imagesList" exact={true}> <ImageListContext.Provider value={{puzzleTasks, setPuzzleTasks}}><ImagesList /></ImageListContext.Provider> </Route>
+          <Route path="/playboard/:id" exact={true}> 
+              <Playboard/> 
+          </Route>
+          <Route path="/imagesList" exact={true}>
+            <ImageListContext.Provider value={{puzzleTasks, setPuzzleTasks}}> 
+              <ImagesList/>
+            </ImageListContext.Provider> </Route>
           <Route path="/create" exact={true}> <CreateNew /> </Route>
           <Route path="/enter" exact={true}>  
-            <LoginContext.Provider value= {{loginData, setLoginData}}>
               <EnterToApp/>
-            </LoginContext.Provider>
           </Route>
           <Route path="/registration" exact={true}> <Registration /> </Route>
+          </LoginContext.Provider>
       </Switch>
       </div>
     </Router>

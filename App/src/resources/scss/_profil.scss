@@ -1,8 +1,51 @@
-.profil
+
+
+.profile
 {
-    background-color: red;
-    width: 200px;
+    background: linear-gradient(to bottom right, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+    width: 180px;
     position: absolute;
     top:2%;
-    right: 2%;
+    right: 1%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  
+
+    &__avatar
+    {
+        width: 25%;
+    }
+
+    &--open
+    {
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+    }
+    &--close
+    {
+        border-radius: 25px;
+    }
+}
+
+.profile-details
+{
+    background: linear-gradient(to bottom right, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+    width: 180px;
+    height: 200px;
+    position: absolute;
+    bottom: -210px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+   
+    justify-content: space-around;
+    align-items: center;
+
+    &__avatar
+    {
+        width: 35%;
+    }
 }

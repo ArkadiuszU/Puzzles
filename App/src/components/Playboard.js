@@ -2,6 +2,8 @@ import React , { useState, useEffect, useCallback  } from 'react';
 import { useParams} from 'react-router-dom';
 import Loading from './Loading';
 
+import Profile from "./Profile"
+
 import timeImg from "../resources/img/wall-clock.png";
 import percentImg from "../resources/img/percentage.png";
 
@@ -128,6 +130,8 @@ function Playboard() {
      if(contentLoaded)
      {
         return (
+            <>
+            <Profile/>
             <div className= "playboard" style = {{"--image" : `url(${puzzleTask.imagePath})`}}>
             {!endGame?
                 <div className="playboard__grabfield">
@@ -173,11 +177,17 @@ function Playboard() {
     
                 </div>
             </div>
+            </>
         );
      }
      else
      {
-         return( <Loading />)
+         return(
+             <>
+            <Profile/> 
+            <Loading />
+            </>
+            )
         }
    
   }
