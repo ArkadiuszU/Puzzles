@@ -4,17 +4,16 @@
 {
     background: linear-gradient(to bottom right, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
     width: 180px;
-    position: absolute;
+    position: fixed;
     top:2%;
     right: 1%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-  
-
     &__avatar
     {
         width: 25%;
+        position: sticky;
     }
 
     &--open

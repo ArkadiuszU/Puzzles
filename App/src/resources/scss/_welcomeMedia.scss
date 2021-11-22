@@ -1,0 +1,171 @@
+
+    @media (max-width: 1199.98px) {
+    .welcome
+    {
+        &__header
+        {
+            &__text
+            {               
+                h1{
+                    font-size: 4rem;;
+                }
+                h2{
+                    font-size: 2rem;;
+                }
+                p{
+                    font-size: medium;
+                }
+            }
+        }
+        &__navbox
+        {
+            &__box
+            {
+                h1{
+                    font-size: large;
+                }
+                &__button
+                {
+                    font-size: small;
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width:  991.98px) {
+    .welcome
+{
+    &__header
+        {
+            &__text
+            {               
+                h1{
+                    font-size: 3.5rem;;
+                }
+                h2{
+                    font-size: 1.8rem;;
+                }
+                p{
+                    font-size: large;
+                }
+            }
+        }
+    &__navbox
+    {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        &__box
+        {
+            
+            width: 35%;
+            margin: 5%;
+        }
+    }
+}
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {  .welcome
+    {
+        &__header
+        {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            &__undraw
+            {
+                width: 75%;
+              
+            }
+            &__text
+            {             
+                width: 70%;
+                height: 50%;
+            }
+        }
+        &__navbox
+        {
+            width: 100%;
+            min-height: 45vh;
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            &__box
+            {
+                width: 55%;
+                //margin: 5%;
+
+                &--hover
+                {
+                    background-position: left;
+                }
+                h1{
+                    font-size: x-large;
+                }
+                p{
+                    font-size: small;
+                }
+                &__button
+                {
+                    font-size: small;
+                }
+            }
+        }
+    } }
+
+
+    @media (max-width: 575.98px) { 
+        .welcome
+        {
+            &__header
+            {
+                height: 60vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+                &__undraw
+                {
+                    width: 95%;
+                  
+                }
+                &__text
+                {             
+                    width: 70%;
+                    height: 50%;
+                }
+            }
+            &__navbox
+            {
+                width: 100%;
+                min-height: 45vh;
+                display: flex;
+                justify-content: space-evenly;
+                flex-wrap: wrap;
+                &__box
+                {
+                    width: 55%;
+                    //margin: 5%;
+    
+                    &--hover
+                    {
+                        background-position: left;
+                    }
+                    h1{
+                        font-size: x-large;
+                    }
+                    p{
+                        font-size: small;
+                    }
+                    &__button
+                    {
+                        font-size: small;
+                    }
+                }
+            }
+        } }

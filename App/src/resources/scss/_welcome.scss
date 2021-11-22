@@ -48,7 +48,7 @@
             
             &__box
             {
-                width: 25%;
+                width: 26%;
                 height: 20vh;
                 background-image: linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0.1), rgba(255,255,255,0.9));
                 background-size: 300%;
@@ -72,6 +72,7 @@
                 p{
                     font-size: small;
                     text-align: center;
+                    padding: 5%;
                 }
 
                 &__button
@@ -79,15 +80,17 @@
                     background-color: $base-yellow-color;
                     text-decoration: none;
                     color:black;
+                    font-size: medium;
                     text-align: center;
                     padding: 2%;
-                    padding-left: 4%;
-                    padding-right: 4%;
+                    padding-left: 2%;
+                    padding-right: 2%;
                     width: 50%;
                 }
             }
-
-            
-
         }
+
+
+        @import "welcomeMedia";
     }
+
