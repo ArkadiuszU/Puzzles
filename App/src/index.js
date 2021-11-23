@@ -8,6 +8,7 @@ import Welcome from "./components/Welcome";
 import CreateNew from "./components/CreateNew";
 import EnterToApp from "./components/EnterToApp";
 import Registration from "./components/Registration";
+import Ranking from "./components/Ranking";
 
 import {ImageListContext, LoginContext} from "./components/Contexts/Contexts"
 
@@ -27,7 +28,6 @@ role: "User"
 
   //const [loggedUser, setLoggedUser] = useState();
 
-
   return (
     <Router>
       <div className="main">
@@ -42,11 +42,17 @@ role: "User"
           <Route path="/imagesList" exact={true}>
             <ImageListContext.Provider value={{puzzleTasks, setPuzzleTasks}}> 
               <ImagesList/>
-            </ImageListContext.Provider> </Route>
-          <Route path="/create" exact={true}> <CreateNew /> </Route>
-          <Route path="/enter" exact={true}>  
-              <EnterToApp/>
+            </ImageListContext.Provider> 
           </Route>
+          <Route path="/create" exact={true}> <CreateNew /> </Route>
+          <Route path="/ranking" exact={true}> 
+
+          <ImageListContext.Provider value={{puzzleTasks, setPuzzleTasks}}> 
+          <Ranking />
+            </ImageListContext.Provider> 
+            </Route>
+
+          <Route path="/enter" exact={true}> <EnterToApp/></Route>
           <Route path="/registration" exact={true}> <Registration /> </Route>
           </LoginContext.Provider>
       </Switch>

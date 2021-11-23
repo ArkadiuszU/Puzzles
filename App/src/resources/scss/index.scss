@@ -8,11 +8,12 @@ $dark-color: #030e12;
 @import "grid";
 @import "playboard";
 @import "welcome";
-@import "imageslist";
+//@import "userlist";
 @import "loading";
 @import "entertoapp";
 @import "registration";
 @import "profil";
+@import "imagelist";
 
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
@@ -45,7 +46,7 @@ body{
 
         .main-container 
         {
-            min-height: 85vh;
+            min-height: 90vh;
             width: 75%;
             display: flex;
             border-radius: 2rem ;

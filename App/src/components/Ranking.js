@@ -1,13 +1,12 @@
 import React, {useContext, useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import Loading from './Loading';
 import ImageListContext from './Contexts/ImageListContext'
-import { useHistory } from 'react-router-dom';
+
 
 import Profile from "./Profile"
 
-function ImagesList() {
-
-  const history = useHistory();
+function Ranking() {
 
   const [elementHovered, SetElementHovered] = useState(false)
 
@@ -20,9 +19,11 @@ function ImagesList() {
     {
 
     setTimeout( () => {
+
       fetch('https://localhost:5001/api/PuzzleTask')
         .then(response => response.json())
         .then(data => { console.log(data); setPuzzleTasks(data) });
+
     }, 2000)
   }
 
@@ -42,10 +43,13 @@ function ImagesList() {
             </div> :
             puzzleTasks.map((el, id) => {
               return (
-                  <div key={id} className="imageslist__container__element" onClick= {e => history.push(`playboard/${el.id}`) }  onMouseLeave={_ => SetElementHovered(false)} onMouseOver={_ => SetElementHovered(id)} >
+
+                <Link key={id} to={`/playboard/${el.id}`}>
+                  <div  className="imageslist__container__element" onMouseLeave={_ => SetElementHovered(false)} onMouseOver={_ => SetElementHovered(id)}>
                     <p > {el.name}</p>
                     <img className={`imageslist__container__element__img${(elementHovered === id) ? "--hovered" : ""}`} src={el.imagePath} />
                   </div>
+                </Link>
               )
             })
 
@@ -58,4 +62,4 @@ function ImagesList() {
   );
 }
 
-export default ImagesList;
+export default Ranking;

@@ -1,0 +1,76 @@
+.imageslist
+{
+    @extend .main-container;
+
+    justify-content: space-evenly;
+   
+    align-items: center;
+    flex-direction: column;
+    background-image: url("../img/following.svg");
+    background-position: bottom;
+    background-size: 115%;
+    background-repeat: no-repeat;
+    background: linear-gradient(to bottom right, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+
+    &__container
+    {
+        background-color: pink;
+        width: 90%;
+        height: 70vh;
+        display:flex;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        flex-wrap: wrap;
+
+        overflow-y: scroll;
+            &::-webkit-scrollbar {
+                display: none;
+              }
+
+        &__loading
+              {
+                  height: 100%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+              }
+        &__element
+        {
+            background-image: linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0.1), rgba(255,255,255,0.9));
+            background-size: 300%;
+            background-position: right;
+            transition: background-position 1s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+
+            height: 30%;
+            width: 22%;
+            margin: 2%;
+
+            &:hover{
+                background-position: left;
+                cursor: pointer;
+            }
+
+            &__img{
+                width: 70%;
+                height: 60%;
+                transition: all .2s  ease-in-out;
+
+                &--hovered
+                {
+                    @extend .imageslist__container__element__img;
+                    //transform: scale(1.7); /* Equal to scaleX(0.7) scaleY(0.7) */
+                    box-shadow: 0 0 1em $base-yellow-color;
+                    transition: all .2s 0.5s ease-in-out;
+                }
+            }
+        }
+    }
+}
+
+
+@import "imagelistMedia";
+

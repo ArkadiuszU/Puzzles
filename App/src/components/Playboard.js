@@ -7,27 +7,20 @@ import Profile from "./Profile"
 import timeImg from "../resources/img/wall-clock.png";
 import percentImg from "../resources/img/percentage.png";
 
-const W = 600;
-const H = 450;
-const count = 12
-const wh = Math.round(Math.sqrt(W*H/count))
-const C = Math.round(W/wh)
-const R = Math.round(H/wh)
+
+const wh = 75;
+
 const allPuzzlePieces = [];
 let gameTimeInterval;
 
-
-
 let step = 1;
-for (let row = 0; row < R; row++) {
-
-    for (let col = 0; col < C; col++) {
+for (let row = 0; row < 3; row++) {
+    for (let col = 0; col < 4; col++) {
         allPuzzlePieces.push({id:step, posX: (col*wh *-1), posY: row*wh*-1})
         step++
     }
-  }
+}
 
-//console.log(allPuzzlePieces)
 
 const result = allPuzzlePieces.map(el=> {return el.id})
 
@@ -46,12 +39,49 @@ function Playboard() {
     const [puzzleTask, setPuzzleTask] = useState()
     const [contentLoaded , SetContentLoaded ] = useState(false)
 
+    const [boxSize, setBoxSize] = useState(wh)
+
     let { id } = useParams();
 
 
   useEffect(()=>{
 
+    window.addEventListener('resize', e => 
+    {
+        const w=e.target.innerWidth;
+        console.log(w);
 
+    if(w < 1199.98)
+    {
+        if (w < 991.98)
+        {
+            if(w < 767.98)
+            {
+                if( w < 575.98 )
+                {
+                    setBoxSize(75);
+                }
+                else{
+                    setBoxSize(100);
+                }
+             
+            }
+            else{
+                setBoxSize(100);
+            }
+          
+        }
+        else
+        {
+            setBoxSize(125);
+        }
+    }
+    else
+    {
+        setBoxSize(150);
+    }
+    }
+    );
 
   setTimeout(_ => {
 
@@ -139,23 +169,23 @@ function Playboard() {
                     {
                         piecesForGrabfield.map((el, id) => {
                             const puzzlePieces = allPuzzlePieces.filter(v =>  v.id == el)[0]; 
-                            return <SinglePuzzlePiece key={id} pieceId={puzzlePieces.id} MovePuzzlePieceHandle={MovePuzzlePieceEvent} piecePos = {{x:puzzlePieces.posX, y:puzzlePieces.posY}} size={wh} onGrabfield = {true} image = {puzzleTask.imagePath} />
+                            return <SinglePuzzlePiece key={id} pieceId={puzzlePieces.id} MovePuzzlePieceHandle={MovePuzzlePieceEvent} piecePos = {{x:puzzlePieces.posX, y:puzzlePieces.posY}} size={boxSize} onGrabfield = {true} image = {puzzleTask.imagePath} />
                         })
                     }
                     </div>
                 </div>
-                :null
+                :nullz
             }
     
                 <div className="playboard__dropfield">
                     <div className="playboard__dropfield__dropboxesarea" >
-                        <div className= {`playboard__dropfield__dropboxesarea__image ${endGame?"playboard__dropfield__dropboxesarea__image-exposed":""}`} style={{width:`${W}px`, height:`${H}px`}}>
+                        <div className= {`playboard__dropfield__dropboxesarea__image ${endGame?"playboard__dropfield__dropboxesarea__image-exposed":""}`} style={{width:`${boxSize*4}px`, height:`${boxSize*3}px`}}>
                         {
                             allPieces.map((el, id) => {
                                 const puzzlePieces = allPieces.filter(v =>  v.id == piecesForDropfield[id])[0]; 
                                 return( 
-                                        <PuzzleDropBox key={id} boxId={id + 1} OverDropBoxChangeHandle = {OverDropBoxChangeEvent} overDropBoxFromPlayboard = {overDropBox} size={wh} >
-                                            {(puzzlePieces)?<SinglePuzzlePiece key={id} pieceId={puzzlePieces.id} MovePuzzlePieceHandle={MovePuzzlePieceEvent} piecePos = {{x:puzzlePieces.posX, y:puzzlePieces.posY}} size={wh} onGrabfield = {false} image = {puzzleTask.imagePath}  />:null}
+                                        <PuzzleDropBox key={id} boxId={id + 1} OverDropBoxChangeHandle = {OverDropBoxChangeEvent} overDropBoxFromPlayboard = {overDropBox} size={boxSize} >
+                                            {(puzzlePieces)?<SinglePuzzlePiece key={id} pieceId={puzzlePieces.id} MovePuzzlePieceHandle={MovePuzzlePieceEvent} piecePos = {{x:puzzlePieces.posX, y:puzzlePieces.posY}} size={boxSize} onGrabfield = {false} image = {puzzleTask.imagePath}  />:null}
                                         </PuzzleDropBox>
                                 )
                             })

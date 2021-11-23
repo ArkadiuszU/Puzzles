@@ -34,11 +34,11 @@ function Welcome() {
                 {
                     (loggedUser == undefined)?
                     
-               <NavBox title="Log in" content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" 
+                    <NavBox title="Log in" content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" 
                     buttonText = "Let's join us" navTo ="/enter"/>
                     :
                     <NavBox title="Check your position" content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" 
-                    buttonText = "Show ranking" navTo ="/enter"/>
+                    buttonText = "Show ranking" navTo ="/ranking"/>
                 }
             </div>
     </div>
