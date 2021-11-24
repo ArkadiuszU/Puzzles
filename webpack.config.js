@@ -1,8 +1,21 @@
 const path = require('path')
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-module.exports = {
+module.exports = (mode) => 
+{
+  const envConfig = {};
+  if(mode.WEBPACK_SERVE)
+  {
+    envConfig.domain= 'test dev'
+  }
+  else if (mode.WEBPACK_BUILD)
+  {
+    envConfig.domain= 'test prod'
+  }
+return(   
+{
   entry: {
     main: path.resolve(__dirname, './App/src/index.js'),
   },
@@ -43,5 +56,12 @@ module.exports = {
     },
    ]
  },
- plugins: [new HtmlWebpackPlugin({ template: './App/index.html',  favicon: './App/Favicon.ico' }), new MiniCssExtractPlugin()],
+ plugins: [new HtmlWebpackPlugin({ template: './App/index.html',  favicon: './App/Favicon.ico' }), 
+          new MiniCssExtractPlugin(),
+          new webpack.DefinePlugin({
+              TEST: JSON.stringify(envConfig.domain),
+          }),
+          
+],
+});
 }
