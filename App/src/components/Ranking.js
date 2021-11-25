@@ -20,7 +20,7 @@ function Ranking() {
 
     setTimeout( () => {
 
-      fetch('https://localhost:5001/api/PuzzleTask')
+      fetch(`${BASEURL}/api/PuzzleTask`)
         .then(response => response.json())
         .then(data => { console.log(data); setPuzzleTasks(data) });
 

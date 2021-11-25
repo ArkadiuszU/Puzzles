@@ -8,11 +8,11 @@ module.exports = (mode) =>
   const envConfig = {};
   if(mode.WEBPACK_SERVE)
   {
-    envConfig.domain= 'test dev'
+    envConfig.domain= 'https://localhost:5001'
   }
   else if (mode.WEBPACK_BUILD)
   {
-    envConfig.domain= 'test prod'
+    envConfig.domain= 'https://puzzlesapi.azurewebsites.net'
   }
 return(   
 {
@@ -59,7 +59,7 @@ return(
  plugins: [new HtmlWebpackPlugin({ template: './App/index.html',  favicon: './App/Favicon.ico' }), 
           new MiniCssExtractPlugin(),
           new webpack.DefinePlugin({
-              TEST: JSON.stringify(envConfig.domain),
+              BASEURL: JSON.stringify(envConfig.domain),
           }),
           
 ],

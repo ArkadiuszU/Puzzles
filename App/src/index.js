@@ -22,7 +22,7 @@ function App(props) {
 email: "ab@example.com",
 gender: "True",
 name: "A B",
-nick: `${TEST}`,
+nick: `oo`,
 role: "User"
   })
 

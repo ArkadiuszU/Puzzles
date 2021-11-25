@@ -110,7 +110,7 @@ function Registration() {
     {
       console.log(formData)
       console.log("singUP")
-      fetch('https://localhost:5001/api/register', {
+      fetch(`${BASEURL}/api/register`, {
         method: 'POST', 
         headers: {
           'Content-Type': 'application/json',

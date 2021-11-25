@@ -85,7 +85,7 @@ function Playboard() {
 
   setTimeout(_ => {
 
-    fetch(`https://localhost:5001/api/PuzzleTask/${id}`)
+    fetch(`${BASEURL}/api/PuzzleTask/${id}`)
     .then(response => response.json())
     .then(data => { console.log(data); setPuzzleTask(data); SetContentLoaded(true)});
   
