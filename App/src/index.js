@@ -17,16 +17,16 @@ import './resources/scss/index.scss';
 function App(props) {
 
   const [puzzleTasks, setPuzzleTasks] = useState([])
-  const [loggedUser, setLoggedUser] = useState({
-    country: "sl",
-email: "ab@example.com",
-gender: "True",
-name: "A B",
-nick: `oo`,
-role: "User"
-  })
+//   const [loggedUser, setLoggedUser] = useState({
+//     country: "sl",
+// email: "ab@example.com",
+// gender: "True",
+// name: "A B",
+// nick: `oo`,
+// role: "User"
+//   })
 
-  //const [loggedUser, setLoggedUser] = useState();
+  const [loggedUser, setLoggedUser] = useState();
 
   return (
     <Router>
