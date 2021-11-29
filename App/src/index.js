@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
+var myImage = require("./DragDropTouch");
+console.log(myImage);
+
 import { BrowserRouter as Router, Route, Switch,} from 'react-router-dom';
 import ImagesList from './components/ImagesList';
 import Playboard from "./components/Playboard";
