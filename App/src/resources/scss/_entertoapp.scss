@@ -55,6 +55,7 @@
             margin: 1%;
             width: 80%;
             height: 20%;
+            min-height: 125px;
             display: flex;
             align-items: center;
             justify-content: space-evenly;
@@ -72,17 +73,19 @@
 
     &__imgbox
     {
-        width: 50%;
+        width: 40%;
         height: 50%;
     }
     &__formbox
     {
-        width: 40%;
+        width: 50%;
+        max-width: 750px;
         height: 60%;
+        min-height: 600px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-right: 5%;
+        
 
         &__login
         {
@@ -120,12 +123,10 @@
         {
             @extend .formbox;
             height: 15%;
-            margin-bottom: 5%;
-        
             .loginexternal
             {
                 color:whitesmoke;
-                height: 40%;
+                height: 30%;
                 width: 40%;
                 display: flex;
                 align-items: center;
@@ -163,10 +164,16 @@
         &__singup
         {
             @extend .formbox;
-            flex-direction: column;
+            text-align: center;
+            padding-left: 5%;
+            padding-right: 5%;
 
+            img{
+                display: none;
+            }
             
             &__button{
+                margin-top: 4%;
                 @extend .entertoapp__buttons;
                 padding-left: 15%;
                 padding-right: 15%;
@@ -181,4 +188,117 @@
         
         
     }
+}
+
+
+
+
+
+
+@media (max-width: 1199.98px) {
+    .entertoapp
+        {
+            justify-content: center;
+            min-height: 800px;
+            
+            &__imgbox
+            {
+              display: none;
+            }
+
+            &__formbox
+            {
+                width: 90%;
+                
+
+              
+
+                &__singup
+                {
+                   
+                   min-height: 250px;
+                   display: flex;
+                   justify-content: space-between;
+                    padding: 0%;
+                    div
+                    {
+                       
+                        width: 65%;
+                    }
+
+                    img{
+                        display: block;
+                        height: 200px;
+                    }
+                }
+        
+               
+            }
+        }
+
+}
+
+
+@media (max-width: 767.98px) {  
+    .entertoapp
+    {
+   
+    h2{
+        font-size: 2.6rem;
+    }
+
+    p
+    {
+        font-size: .9rem;
+    }
+
+    .loginexternal
+    {
+        p
+        {
+            font-size: .8rem;
+        }
+    }
+    }
+}
+
+    @media (max-width: 575.98px) { 
+        .entertoapp
+        {
+           
+    &__formbox
+    {
+        &__login
+        {          
+            padding-top: 5%; 
+            label
+            {
+                font-size: large;
+            }
+
+            &__inputs
+            {
+                width: 75%;
+            }
+
+        }
+
+        &__loginexternal
+        {
+           
+            .loginexternal
+            {
+                width: 75%;
+            }
+        }
+    }
+        }
+
+        .formbox
+        {
+            flex-direction: column;
+            width: 100%;
+            margin-top: 5%;
+        }
+
 }

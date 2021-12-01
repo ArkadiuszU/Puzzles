@@ -66,9 +66,12 @@ function EnterToApp() {
         </div>
         <h2> or </h2>
         <div className="entertoapp__formbox__singup">
-          <p>if you are here first time create an account</p>
-          <p>to get to know all the possibilities offered by the app</p>
+        <img className="entertoapp__imgbox" src={enterImg} ></img>
+          <div>
+          <p>if you are here first time create an account
+            to get to know all the possibilities offered by the app</p>
           <button onClick={ () => {history.push("/registration")} } className="entertoapp__formbox__singup__button" >sign up</button>
+          </div>
         </div>
       </div>
     </div>
