@@ -1,10 +1,10 @@
 .playboard
 {
     @extend .main-container;
-
+    
      background: linear-gradient(to bottom right, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
 
-
+     overflow: auto;
     &__grabfield
     {
         display: flex;
@@ -91,7 +91,8 @@
             justify-content: space-around;
             align-items: center;
             width: 100%;
-            height: 15%;
+            height: 20%;
+            padding: 3%;
             &__icon
             {
                 width: 40px;
@@ -129,26 +130,37 @@
 @media (max-width: 767.98px) {  
 .playboard
 {
+    height: 10vh;
     display: flex;
     flex-direction: column-reverse;
+    justify-content: space-between;
+
     &__grabfield
     {
+
         width: 100%;
         min-height: 0vh;
+        border-top-left-radius: 0rem ;
+        border-bottom-right-radius: 2rem ;
+        min-height: 200px;
+       
     }
 
     &__dropfield
     {
         width: 100%;
         min-height: 0vh;
+          border-top-left-radius: 2rem ;
+          border-bottom-left-radius: 2rem ;
+          min-height: 500px;
+          
     
 
         &__dropboxesarea
         {
             width: 100%;
-
-            min-height: 0vh;
-            height: 60vh;
+            min-height: 400px;
+            height: 40vh;
             &__image
             {
                 display: flex;
@@ -158,6 +170,23 @@
                
             }
 
+        }
+
+        &__statarea
+        {
+            padding: 3%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            height: 10vh;
+            min-height: 100px;
+            &__icon
+            {
+                width: 40px;
+                height: 40px;
+                margin-top: 20%;
+            }
         }
     }
 }
