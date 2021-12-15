@@ -22,7 +22,11 @@ function SinglePuzzlePiece({pieceId, MovePuzzlePieceHandle, piecePos, size, onGr
                               ${(isGrabbed)?"playboard__singlepuzzlepiece-grabbed":null}
                               ${(!onGrabfield)?"playboard__singlepuzzlepiece-dropped":null}`
                           } 
-              style = {{backgroundPosition: ` ${piecePos.x}px ${piecePos.y}px` , width : `${size}px`, height : `${size}px` , margin : `${onGrabfield?"1%":"0%"}`}}>
+              style = {{backgroundPosition: ` ${piecePos.x}px ${piecePos.y}px` , width : `${size}px`, height : `${size}px` , backgroundSize: `${size * 4}px ${size * 3}px` , margin : `${onGrabfield?"1%":"0%"}`}}>
+
+
+
+
 
                             ID= {pieceId}
 

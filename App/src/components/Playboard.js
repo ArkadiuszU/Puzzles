@@ -8,21 +8,10 @@ import timeImg from "../resources/img/wall-clock.png";
 import percentImg from "../resources/img/percentage.png";
 
 
-const wh = 75;
 
-const allPuzzlePieces = [];
 let gameTimeInterval;
 
-let step = 1;
-for (let row = 0; row < 3; row++) {
-    for (let col = 0; col < 4; col++) {
-        allPuzzlePieces.push({ id: step, posX: (col * wh * -1), posY: row * wh * -1 })
-        step++
-    }
-}
-
-
-const result = allPuzzlePieces.map(el => { return el.id })
+let result;
 
 import SinglePuzzlePiece from "./SinglePuzzlePiece";
 import PuzzleDropBox from "./PuzzleDropBox";
@@ -30,8 +19,8 @@ import PuzzleDropBox from "./PuzzleDropBox";
 
 function Playboard() {
 
-    const [allPieces, setAllPieces] = useState(allPuzzlePieces);
-    const [piecesForGrabfield, setPiecesForGrabfield] = useState(result);
+    const [allPieces, setAllPieces] = useState();
+    const [piecesForGrabfield, setPiecesForGrabfield] = useState();
     const [piecesForDropfield, setPiecesForDropfield] = useState([]);
     const [gameStats, setGameStats] = useState({ timeS: 0, timeM: 0, done: 0 });
     const [overDropBox, setOverDropBox] = useState(false)
@@ -40,12 +29,10 @@ function Playboard() {
     const [puzzleTask, setPuzzleTask] = useState()
     const [contentLoaded, SetContentLoaded] = useState(false)
 
-    const [boxSize, setBoxSize] = useState(wh)
+    const [boxSize, setBoxSize] = useState()
 
     const checkWindowWidth = () => {
         const w = window.innerWidth;
-        console.log(w);
-
         if (w < 1199.98) {
             if (w < 991.98) {
                 if (w < 767.98) {
@@ -71,6 +58,20 @@ function Playboard() {
         }
     }
 
+    const prepareLayout = (boxSize) =>
+    {
+        const allPuzzlePieces = [];
+        let step = 1;
+        for (let row = 0; row < 3; row++) {
+            for (let col = 0; col < 4; col++) {
+                allPuzzlePieces.push({ id: step, posX: (col * boxSize * -1), posY: row * boxSize * -1 })
+                step++
+            }
+        }
+
+        return allPuzzlePieces;
+    }
+
     let { id } = useParams();
 
 
@@ -85,7 +86,7 @@ function Playboard() {
 
             fetch(`${BASEURL}/api/PuzzleTask/${id}`)
                 .then(response => response.json())
-                .then(data => { console.log(data); setPuzzleTask(data); SetContentLoaded(true) });
+                .then(data => { setPuzzleTask(data); SetContentLoaded(true) });
 
 
         }, 1000)
@@ -93,6 +94,18 @@ function Playboard() {
         checkWindowWidth();
 
     }, [])
+
+    useEffect(() => {
+        setAllPieces(prepareLayout(boxSize));
+    }, [boxSize])
+
+    useEffect(() => {
+        if(allPieces != undefined && piecesForGrabfield == undefined)
+        {
+            result = allPieces.map(el => { return el.id })
+            setPiecesForGrabfield(result)
+        }
+    }, [allPieces])
 
 
 
@@ -136,7 +149,6 @@ function Playboard() {
     useEffect(() => {
 
         gameTimeInterval = setInterval(() => { setGameStats(prev => { return { ...prev, timeS: prev.timeS + 1 } }) }, 1000);
-        console.log(id)
         return () => {
             clearInterval(gameTimeInterval);
         }
@@ -148,7 +160,7 @@ function Playboard() {
             setGameStats(prev => { return { ...prev, timeS: 0, timeM: prev.timeM + 1 } })
     }, [gameStats.timeS])
 
-    if (contentLoaded) {
+    if (contentLoaded && allPieces != undefined && piecesForGrabfield != undefined) {
         return (
             <>
                 <Profile />
@@ -158,13 +170,13 @@ function Playboard() {
                             <div className="playboard__grabfield__grabbox">
                                 {
                                     piecesForGrabfield.map((el, id) => {
-                                        const puzzlePieces = allPuzzlePieces.filter(v => v.id == el)[0];
+                                        const puzzlePieces = allPieces.filter(v => v.id == el)[0];
                                         return <SinglePuzzlePiece key={id} pieceId={puzzlePieces.id} MovePuzzlePieceHandle={MovePuzzlePieceEvent} piecePos={{ x: puzzlePieces.posX, y: puzzlePieces.posY }} size={boxSize} onGrabfield={true} image={puzzleTask.imagePath} />
                                     })
                                 }
                             </div>
                         </div>
-                        : nullz
+                        : null
                     }
 
                     <div className="playboard__dropfield">
