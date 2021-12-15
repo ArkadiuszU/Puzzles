@@ -57,14 +57,19 @@
             {
                 display: flex;
                 flex-wrap: wrap;
-                background-image:  linear-gradient( rgba(255,255,255,0.6), rgba(255,255,255,0.6) ),var(--image);
                 background-size: 100%;
+                background-image:  linear-gradient( rgba(255,255,255,1), rgba(255,255,255,1) ),var(--image);
                
         
                 &-exposed
                 {
                     transform: scale(1.4);
                     background-image:  var(--image);
+                }
+
+                &-uncovered
+                {
+                    background-image:  linear-gradient( rgba(255,255,255,0.7), rgba(255,255,255,0.7) ),var(--image);
                 }
               
                 &__boxtodrop
@@ -165,7 +170,7 @@
             {
                 display: flex;
                 flex-wrap: wrap;
-                background-image:  linear-gradient( rgba(255,255,255,0.6), rgba(255,255,255,0.6) ),var(--image);
+          
                 background-size: 100%;
                
             }

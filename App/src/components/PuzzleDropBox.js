@@ -4,16 +4,19 @@ function PuzzleDropBox({boxId, OverDropBoxChangeHandle, children, overDropBoxFro
 
     const onDragOverHandle =  (e)=> 
     {
+     
       if(!children) e.preventDefault();
       if(!overDropBoxFromPlayboard)
       {
          OverDropBoxChangeHandle(boxId)
+        
       }
     }
 
     const onDragLeaveHandle =  (e)=> 
     {
        OverDropBoxChangeHandle(false)
+      
     }
 
     return (

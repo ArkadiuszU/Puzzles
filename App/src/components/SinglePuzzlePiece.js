@@ -5,9 +5,17 @@ function SinglePuzzlePiece({pieceId, MovePuzzlePieceHandle, piecePos, size, onGr
   const[isGrabbed, setGrabbed] = useState(false);
 
   useEffect(()=> {
-
+   
     if(!isGrabbed)
+    {
       MovePuzzlePieceHandle(pieceId , true)
+     
+    }
+    else{
+      
+    }
+
+
 
   }, [isGrabbed])
 
@@ -23,12 +31,8 @@ function SinglePuzzlePiece({pieceId, MovePuzzlePieceHandle, piecePos, size, onGr
                               ${(!onGrabfield)?"playboard__singlepuzzlepiece-dropped":null}`
                           } 
               style = {{backgroundPosition: ` ${piecePos.x}px ${piecePos.y}px` , width : `${size}px`, height : `${size}px` , backgroundSize: `${size * 4}px ${size * 3}px` , margin : `${onGrabfield?"1%":"0%"}`}}>
-
-
-
-
-
-                            ID= {pieceId}
+                      
+                      ID= {pieceId}
 
         </div>
     </>

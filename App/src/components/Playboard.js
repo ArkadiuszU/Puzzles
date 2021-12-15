@@ -10,7 +10,6 @@ import percentImg from "../resources/img/percentage.png";
 
 
 let gameTimeInterval;
-
 let result;
 
 import SinglePuzzlePiece from "./SinglePuzzlePiece";
@@ -22,14 +21,17 @@ function Playboard() {
     const [allPieces, setAllPieces] = useState();
     const [piecesForGrabfield, setPiecesForGrabfield] = useState();
     const [piecesForDropfield, setPiecesForDropfield] = useState([]);
-    const [gameStats, setGameStats] = useState({ timeS: 0, timeM: 0, done: 0 });
+    const [gameStats, setGameStats] = useState({ timeS: 0, timeM: 0, done: 0, moves:0 });
     const [overDropBox, setOverDropBox] = useState(false)
     const [endGame, setEndGame] = useState(false)
+    const [uncover, SetUncover] = useState(false)
 
     const [puzzleTask, setPuzzleTask] = useState()
     const [contentLoaded, SetContentLoaded] = useState(false)
 
     const [boxSize, setBoxSize] = useState()
+    let { id } = useParams();
+
 
     const checkWindowWidth = () => {
         const w = window.innerWidth;
@@ -72,7 +74,7 @@ function Playboard() {
         return allPuzzlePieces;
     }
 
-    let { id } = useParams();
+  
 
 
     useEffect(() => {
@@ -110,6 +112,7 @@ function Playboard() {
 
 
     const MovePuzzlePieceEvent = (puzzlePieceId, direction) => {
+      
         if (direction) {
             if (overDropBox) {
                 setPiecesForGrabfield(prev => { return prev.filter(v => v !== puzzlePieceId) });
@@ -122,6 +125,8 @@ function Playboard() {
             piecesForDropfield[piecesForDropfield.indexOf(puzzlePieceId)] = false;
             setPiecesForGrabfield(prev => [...prev, puzzlePieceId])
         }
+
+        
         CheckPoints();
     }
     const OverDropBoxChangeEvent = (puzzleDropBoxId) => {
@@ -181,7 +186,7 @@ function Playboard() {
 
                     <div className="playboard__dropfield">
                         <div className="playboard__dropfield__dropboxesarea" >
-                            <div className={`playboard__dropfield__dropboxesarea__image ${endGame ? "playboard__dropfield__dropboxesarea__image-exposed" : ""}`} style={{ width: `${boxSize * 4}px`, height: `${boxSize * 3}px` }}>
+                            <div className={`playboard__dropfield__dropboxesarea__image ${uncover ? "playboard__dropfield__dropboxesarea__image-uncovered" : ""}  ${endGame ? "playboard__dropfield__dropboxesarea__image-exposed" : ""}`} style={{ width: `${boxSize * 4}px`, height: `${boxSize * 3}px` }}>
                                 {
                                     allPieces.map((el, id) => {
                                         const puzzlePieces = allPieces.filter(v => v.id == piecesForDropfield[id])[0];
@@ -199,6 +204,8 @@ function Playboard() {
                             <div className="playboard__dropfield__statarea">
                                 <div> <p> {gameStats.timeM > 0 ? `${gameStats.timeM}m` : ""}{gameStats.timeS}s</p><img className="playboard__dropfield__statarea__icon" src={timeImg} /> </div>
                                 <div> <p> {gameStats.done} %</p> <img className="playboard__dropfield__statarea__icon" src={percentImg} /> </div>
+                                <div> <p> {gameStats.moves}</p> <img className="playboard__dropfield__statarea__icon" src={percentImg} /> </div>
+                                <div onMouseDownCapture={ _=> SetUncover(true)} onMouseUpCapture={_=> SetUncover(false)}> Help </div> 
                             </div>
                             :
                             <div className="playboard__dropfield__statarea">
