@@ -14,9 +14,6 @@ function SinglePuzzlePiece({pieceId, MovePuzzlePieceHandle, piecePos, size, onGr
     else{
       
     }
-
-
-
   }, [isGrabbed])
 
     return (
@@ -32,7 +29,6 @@ function SinglePuzzlePiece({pieceId, MovePuzzlePieceHandle, piecePos, size, onGr
                           } 
               style = {{backgroundPosition: ` ${piecePos.x}px ${piecePos.y}px` , width : `${size}px`, height : `${size}px` , backgroundSize: `${size * 4}px ${size * 3}px` , margin : `${onGrabfield?"1%":"0%"}`}}>
                       
-                      ID= {pieceId}
 
         </div>
     </>

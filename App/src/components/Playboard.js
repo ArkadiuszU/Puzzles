@@ -204,8 +204,7 @@ function Playboard() {
                             <div className="playboard__dropfield__statarea">
                                 <div> <p> {gameStats.timeM > 0 ? `${gameStats.timeM}m` : ""}{gameStats.timeS}s</p><img className="playboard__dropfield__statarea__icon" src={timeImg} /> </div>
                                 <div> <p> {gameStats.done} %</p> <img className="playboard__dropfield__statarea__icon" src={percentImg} /> </div>
-                                <div> <p> {gameStats.moves}</p> <img className="playboard__dropfield__statarea__icon" src={percentImg} /> </div>
-                                <div onMouseDownCapture={ _=> SetUncover(true)} onMouseUpCapture={_=> SetUncover(false)}> Help </div> 
+                                <div className="playboard__dropfield__statarea__hint"  onTouchStart={ _=> SetUncover(true)}  onMouseDownCapture={ _=> SetUncover(true)} onTouchEnd={_=> SetUncover(false)} onMouseUpCapture={_=> SetUncover(false)} onMouseLeave={_=> SetUncover(false)}> show hint </div> 
                             </div>
                             :
                             <div className="playboard__dropfield__statarea">

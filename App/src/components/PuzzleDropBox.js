@@ -23,7 +23,11 @@ function PuzzleDropBox({boxId, OverDropBoxChangeHandle, children, overDropBoxFro
     <>
         <div  onDragOver={onDragOverHandle} onDragLeave={onDragLeaveHandle}
         style = {{ width : `${size}px`, height : `${size}px`  } }
-              className = { `playboard__dropfield__dropboxesarea__image__boxtodrop ${((overDropBoxFromPlayboard == boxId) && !children )?"playboard__dropfield__dropboxesarea__image__boxtodrop-overthisbox":""}`} >
+              className = {`playboard__dropfield__dropboxesarea__image__boxtodrop 
+              ${((overDropBoxFromPlayboard == boxId) && !children )?"playboard__dropfield__dropboxesarea__image__boxtodrop-overthisbox":""}
+              ${(boxId <= 4)?"playboard__dropfield__dropboxesarea__image__boxtodrop-firstrow":""}
+              ${(boxId == 1 || boxId == 5 || boxId == 9)?"playboard__dropfield__dropboxesarea__image__boxtodrop-firstcol":""}
+              `} >
               {children}
         </div>
     </>

@@ -58,7 +58,7 @@
                 display: flex;
                 flex-wrap: wrap;
                 background-size: 100%;
-                background-image:  linear-gradient( rgba(255,255,255,1), rgba(255,255,255,1) ),var(--image);
+                background-image:  linear-gradient( rgba(255,255,255,0.6), rgba(255,255,255,0.6) );
                
         
                 &-exposed
@@ -74,16 +74,26 @@
               
                 &__boxtodrop
                 {
-                    border: black 1px solid;
+                    border-top: black 1px solid;
+                    border-left: black 1px solid;
                     display: flex;
                     justify-content: center;
                     align-items: center;
 
-              
-
+                    &-firstrow
+                    {
+                        border-top: none;
+                    }
+                    
+                    &-firstcol
+                    {
+                        border-left: none;
+                    }
+                
                     &-overthisbox
                     {
-                        border: hotpink 2px solid;
+                        border: $base-green-color 4px solid;
+                        border-radius: 2px
                     }
                 }
             }
@@ -93,16 +103,27 @@
         &__statarea
         {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-evenly;
             align-items: center;
             width: 100%;
             height: 20%;
             padding: 3%;
+            
             &__icon
             {
                 width: 40px;
                 height: 40px;
                 margin-top: 20%;
+            }
+
+            &__hint
+            {
+                color:#36a5ce;
+                cursor: pointer;
+                &:hover
+                {
+                    color: #59ccb7;
+                }
             }
         }
     }
